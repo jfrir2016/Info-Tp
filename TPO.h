@@ -5,8 +5,15 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <netdb.h>
 
 #define FUSU "Usuarios.csv"
+#define PORT 43210
 
 typedef struct User
 {
@@ -26,3 +33,5 @@ void NodoalaCola (USU**,USU*);
 int GuardarUsuarios (USU *primero, char *archivo);
 
 USU* LoadUsuarios (char *);
+
+void sigchld_handler(int);
