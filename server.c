@@ -12,7 +12,7 @@ int main (void)
   struct sockaddr_in client_addr;
   
   
-  // Creo el socket y guardo su descriptor; exit si hubo error
+    // Creo el socket y guardo su descriptor; exit si hubo error
     if((sockfd= socket(AF_INET, SOCK_STREAM, 0))==-1)
     {
       perror("Socket: ");

@@ -15,7 +15,6 @@ int main(int argc, char* argv[])
   {
     printf("ingrese la IP a quien conectarse\n");
     exit(1);
-    
   }
   
   if((he=gethostbyname(argv[1]))==NULL)
