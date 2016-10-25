@@ -14,7 +14,7 @@
 
 #define FUSU "Usuarios.csv"
 #define PORT 43210
-
+#define BUFFER 255
 typedef struct User
 {
   int id;
