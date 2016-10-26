@@ -5,9 +5,8 @@
 int main (void)
 {
   
-  int sockfd:
-  int new_fd;
-  int size;
+  int sockfd, accion, new_fd, size;
+  char buffer[BUFFER];
   struct sockaddr_in server_addr;
   struct sockaddr_in client_addr;
   
@@ -50,6 +49,7 @@ int main (void)
     {
     
       size = sizeof(struct sockaddr_in);
+      
       if((new_fd=accept(sockfd,&client_addr,&size))==-1)
       {
 	perror("Accept");
@@ -62,13 +62,32 @@ int main (void)
       {
 	//proceso hijo
 	close(sockfd);
-
-	/*loguear o registrar
-	 * si elije loguear comparo usr y pass
-	 * si elige registrarse recibo usr y pass, comparo y agrego a la base
-	 * legueo
-	 */
+	strcpy(buffer,"Ingrese 0 para iniciar sesion y 1 para registrarse\n");
+	if((sendto(new_fd,buffer,strlen(buffer),0,(struct sockaddr *) &client_addr,sizeof(struct sockaddr)))==-1)
+	{
+	  perror("Sendto: ");
+	  exit(1);
+	}
+	accion=2;
+	if((write(new_fd,&accion,sizeof(accion)))==-1)
+	{
+	  perror("Write: ")
+	  exit(1);
+	}
 	
+	if((read(new_fd,&accion,sizeof(accion)))==-1)
+	{
+	  perror("Read: ")
+	  exit(1);
+	}
+	
+	switch(accion)
+	{
+	  case 0://iniciar sesion
+	    break;
+	  case 1://registrarse
+	    break;
+	}
       }
       
       //proceso padre

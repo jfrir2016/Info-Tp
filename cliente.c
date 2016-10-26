@@ -73,6 +73,12 @@ int main(int argc, char* argv[])
 	  perror("Sendto: ");
 	  exit(1);
 	}
+	
+	if((read(sockfd,&accion,sizeof(accion)))==-1)
+	{
+	  perror("Read: ")
+	  exit(1);
+	}
 	break;
 	
       case 2: //mandar numero(pedido)
@@ -83,9 +89,18 @@ int main(int argc, char* argv[])
 	  perror("Write: ")
 	  exit(1);
 	}
+	if((read(sockfd,&accion,sizeof(accion)))==-1)
+	{
+	  perror("Read: ")
+	  exit(1);
+	}
+	break;
+	
+      case 3://salir
+	
+	close(sockfd);
+	return 0;
 	break;
     }
-    
-  close(sockfd);
-  return 0;
+  }
 }
