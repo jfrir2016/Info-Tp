@@ -41,7 +41,7 @@ typedef struct Publicacion
   int idU;			//Id del usuario que la creo
   char titulo[20];
   char contenido[100];
-  struct CommentNode *firstComment;
+  struct CommentNode *root;
 }PUB;
 
 typedef struct PublicationNode	//Para manejar publicaciones en la lista
@@ -80,3 +80,9 @@ void AgregarNodoUsuario(USU*, NodeUser*);
 void AgregarNodoComentario(COMMT*, NodeComment*);
 
 void AgregarNodoPub(PUB*, NodePub*);
+
+int BorrarPub(int id, NodePub *root);
+
+int BorrarUsuario(int id, NodeUser *root);
+
+int BorrarComentario(int id, NodeComment *root);
