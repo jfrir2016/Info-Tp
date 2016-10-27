@@ -15,6 +15,10 @@
 #define FUSU "Usuarios.csv"
 #define PORT 43210
 #define BUFFER 255
+#define NUser 1
+#define NPub 2
+#define NComm 3
+
 typedef struct User
 {
   int id;
@@ -70,3 +74,9 @@ int GuardarUsuarios (USU *primero, char *archivo);
 USU* LoadUsuarios (char *);
 
 void sigchld_handler(int);
+
+void AgregarNodoUsuario(USU*, NodeUser*);
+
+void AgregarNodoComentario(COMMT*, NodeComment*);
+
+void AgregarNodoPub(PUB*, NodePub*);
