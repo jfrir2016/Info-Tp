@@ -60,7 +60,6 @@ typedef struct CommentNode
   struct Comentario commentario;
   struct CommentNode *nxt;
 }NodeComment;
-  
 
 int Registro (USU**);
 
