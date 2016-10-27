@@ -23,8 +23,44 @@ typedef struct User
   char Usuario[20];
   char Contra[8];
   char email[35];
-  struct User *nxt;
 }USU;
+
+typedef struct UserNode		//Usen esto para manejar usuarios en la lista
+{
+  struct User user;
+  struct UserNode *nxt;
+}NodeUser;
+
+typedef struct Publicacion
+{
+  int id;
+  int idU;			//Id del usuario que la creo
+  char titulo[20];
+  char contenido[100];
+  struct CommentNode *firstComment;
+}PUB;
+
+typedef struct PublicationNode	//Para manejar publicaciones en la lista
+{
+  struct Publicacion publicacion;
+  struct PublicationNode *nxt;
+}NodePub;
+
+typedef struct Comentario
+{
+  int id;
+  int idP;			//Id de la publicacion a la que pertenece
+  int idU;			//Id del usuario que lo creo
+  char titulo[20];
+  char contenido[100];
+}COMMT;
+
+typedef struct CommentNode
+{
+  struct Comentario commentario;
+  struct CommentNode *nxt;
+}NodeComment;
+  
 
 int Registro (USU**);
 
