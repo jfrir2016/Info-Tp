@@ -81,8 +81,8 @@ void AgregarNodoComentario(COMMT*, NodeComment*);
 
 void AgregarNodoPub(PUB*, NodePub*);
 
-int BorrarPub(int id, NodePub *root);
+int BorrarPub(int id, NodePub *root);			//idem sig.
 
-int BorrarUsuario(int id, NodeUser *root);
-
-int BorrarComentario(int id, NodeComment *root);
+int BorrarUsuario(int id, NodeUser *root);		//retorna 0 si se borro, 1 si no se encontro
+ 
+int BorrarComentario(int id, NodeComment *root);	//idem anterior
