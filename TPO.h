@@ -65,6 +65,12 @@ typedef struct CommentNode
   struct CommentNode *nxt;
 }NodeComment;
 
+typedef struct roots
+{
+  struct UserNode rootuser;
+  struct PublicationNode rootpub;
+}Roots;
+
 int Registro (USU**);
 
 void NodoalaCola (USU**,USU*);
@@ -81,8 +87,10 @@ void AgregarNodoComentario(COMMT*, NodeComment*);
 
 void AgregarNodoPub(PUB*, NodePub*);
 
-int BorrarPub(int id, NodePub *root);			//idem sig.
+int BorrarPub(int, NodePub);			//idem sig.
 
-int BorrarUsuario(int id, NodeUser *root);		//retorna 0 si se borro, 1 si no se encontro
+int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
-int BorrarComentario(int id, NodeComment *root);	//idem anterior
+int BorrarComentario(int, NodeComment);		//idem anterior
+
+int AgregarNodo(USU*, COMMT*, PUB*, Roots);
