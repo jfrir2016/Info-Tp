@@ -65,7 +65,7 @@ typedef struct CommentNode
   struct CommentNode *nxt;
 }NodeComment;
 
-typedef struct roots
+typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado con los roots de las listas principales
 {
   struct UserNode rootuser;
   struct PublicationNode rootpub;
@@ -93,4 +93,4 @@ int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
 int BorrarComentario(int, NodeComment);		//idem anterior
 
-int AgregarNodo(USU*, COMMT*, PUB*, Roots);
+int AgregarNodo(USU*, COMMT*, PUB*, Roots*);	//Forma de uso: (USU* !=NULL || COMMT* !=NULL || PUB* !=NULL) <- exclusive or, solo uno debe ser !=NULL
