@@ -15,9 +15,9 @@
 #define FUSU "Usuarios.csv"
 #define PORT 43210
 #define BUFFER 255
-#define NUser 1
-#define NPub 2
-#define NComm 3
+#define NUser 1			//NodeTypeDescriptor User
+#define NPub 2			//NodeTypeDescriptor Pub
+#define NComm 3			//NodeTypeDescriptor Comment
 
 typedef struct User
 {
@@ -71,6 +71,13 @@ typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado c
   struct PublicationNode rootpub;
 }Roots;
 
+typedef struct NodoGenerico
+{
+  struct User usuariogen;
+  struct Publicacion pubgen;
+  struct Comentario commentgen;
+}NODO;
+
 int Registro (USU**);
 
 void NodoalaCola (USU**,USU*);
@@ -93,4 +100,4 @@ int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
 int BorrarComentario(int, NodeComment);		//idem anterior
 
-int AgregarNodo(USU*, COMMT*, PUB*, Roots*);	//Forma de uso: (USU* !=NULL || COMMT* !=NULL || PUB* !=NULL) <- exclusive or, solo uno debe ser !=NULL
+int AgregarNodo(NODO*, Roots*, int);		//int <- NodeTypeDescriptor
