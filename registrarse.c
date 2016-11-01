@@ -3,10 +3,10 @@
 int Registro (USU **Primo)
 {
   USU *point;
-  USU *aux;
-  point=(USU*)malloc(sizeof(USU));
   char Aux[8];
   int a;
+  
+  point=(USU*)malloc(sizeof(USU));
   do
   {
     //system("clear");
@@ -35,14 +35,7 @@ int Registro (USU **Primo)
   }while(a);
   
   NodoalaCola(Primo,point);
-  
-  aux=*Primo;
-  
-  while(aux!=NULL)		//Print
-	{
-	  printf("%s\t%d\t%s\t%s\t%s\n",aux->Nombre,aux->Edad,aux->email,aux->Usuario,aux->Contra);
-	  aux=aux->nxt;
-	}
+
   return 0;
 }
   
