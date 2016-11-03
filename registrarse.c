@@ -1,40 +1,40 @@
 #include "TPO.h"
 
-int Registro (USU **Primo)
+int Registro (Roots *Ini)
 {
-  USU *point;
+  NODO *point;
   char Aux[8];
   int a;
   
-  point=(USU*)malloc(sizeof(USU));
+  point=(NODO*)malloc(sizeof(NODO));
   do
   {
     //system("clear");
   
     printf("Ingrese Nombre: ");
-    scanf("%s",point->Nombre);
+    scanf("%s",point->usuariogen.Nombre);
   
     printf("Ingrese edad: ");
-    scanf("%d",&(point->Edad));
+    scanf("%d",&(point->usuariogen.Edad));
   
     printf("Ingrese e-mail: ");
-    scanf("%s",point->email);
+    scanf("%s",point->usuariogen.email);
   
     printf("Ingrese Usuario: ");
-    scanf("%s",point->Usuario);
+    scanf("%s",point->usuariogen.Usuario);
   
     printf("Ingrese Contraseña: ");
-    scanf("%s",point->Contra);
+    scanf("%s",point->usuariogen.Contra);
   
     printf("Repita Contraseña: ");
     scanf("%s",Aux);
-    a=strcmp(point->Contra,Aux);
+    a=strcmp(point->usuariogen.Contra,Aux);
     if(a)
       printf("ERROR: Contraseñas diferentes\n");
     //sleep(3);
   }while(a);
   
-  NodoalaCola(Primo,point);
+  AgregarNodo(point,Ini,NUser);
 
   return 0;
 }

@@ -2,28 +2,28 @@
 
 int main (void)
 {
-  USU *Primero;
+  Roots *Inicios;
   USU *aux;				
-  int a;				//Registro
+  int a;
   
   /*if(LoadUsuarios(&Primero,FUSU2))	//Cargado
     perror("ERROR: ");*/
 
   do					//Registro
   {
-    Registro(&Primero);
+    Registro(Inicios));
     scanf("%d",&a);
   }while(a!=1);
   
-  aux=(USU*)malloc(sizeof(USU));
+  /*aux=(USU*)malloc(sizeof(USU));
   printf("\t\t\tBienvenido\nIngrese nombre de Usuario: ");
   scanf("%s \n",aux->Usuario);
   printf("Ingrese Contraseña: ");
   scanf("%s \n",aux->Contra);
-  Check(&aux,Primero);
+  Check(&aux,Primero);*/
   
-  /*printf("%s\n",Primero->Nombre);	//Guardado
-  if(GuardarUsuarios(Primero,FUSU))
+  	
+  /*if(GuardarUsuarios(Primero,FUSU))	//Guardado
     perror("ERROR: ");*/
   
   
