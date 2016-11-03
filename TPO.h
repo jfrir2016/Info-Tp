@@ -40,7 +40,7 @@ typedef struct Publicacion
   int id;
   int idU;			//Id del usuario que la creo
   char titulo[20];
-  char contenido[100];
+  char contenido[500];
   struct CommentNode *root;
 }PUB;
 
@@ -55,8 +55,7 @@ typedef struct Comentario
   int id;
   int idP;			//Id de la publicacion a la que pertenece
   int idU;			//Id del usuario que lo creo
-  char titulo[20];
-  char contenido[100];
+  char contenido[241];
 }COMMT;
 
 typedef struct CommentNode
@@ -80,11 +79,9 @@ typedef struct NodoGenerico
 
 int Registro (Roots *);
 
-void NodoalaCola (USU**,USU*);
-
 int GuardarUsuarios (USU *primero, char *archivo);
 
-USU* LoadUsuarios (char *);
+int LoadUsuarios (USU**, char *);
 
 void sigchld_handler(int);
 
