@@ -67,8 +67,8 @@ typedef struct CommentNode
 
 typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado con los roots de las listas principales
 {
-  struct UserNode rootuser;
-  struct PublicationNode rootpub;
+  NodeUser *user;
+  NodePub *pub;
 }Roots;
 
 typedef struct NodoGenerico
@@ -78,7 +78,7 @@ typedef struct NodoGenerico
   struct Comentario commentgen;
 }NODO;
 
-int Registro (USU**);
+int Registro (Roots *);
 
 void NodoalaCola (USU**,USU*);
 
@@ -101,3 +101,5 @@ int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
 int BorrarComentario(int, NodeComment);		//idem anterior
 
 int AgregarNodo(NODO*, Roots*, int);		//int <- NodeTypeDescriptor
+
+int Check (USU **,NodeUser *);
