@@ -2,38 +2,27 @@
 
 int main (void)
 {
-  Roots *Inicios;
-  USU *aux;				
-  int a;
-  
-  /*if(LoadUsuarios(&Primero,FUSU2))	//Cargado
-    perror("ERROR: ");*/
-
-  do					//Registro
-  {
-    Registro(Inicios));
-    scanf("%d",&a);
-  }while(a!=1);
-  
-  /*aux=(USU*)malloc(sizeof(USU));
-  printf("\t\t\tBienvenido\nIngrese nombre de Usuario: ");
-  scanf("%s \n",aux->Usuario);
-  printf("Ingrese Contraseña: ");
-  scanf("%s \n",aux->Contra);
-  Check(&aux,Primero);*/
-  
-  	
-  /*if(GuardarUsuarios(Primero,FUSU))	//Guardado
-    perror("ERROR: ");*/
+  NodePub *root = (NodePub*)malloc(sizeof(NodePub));
+  PUB pub;
+  pub.id=0;
+  pub.idU=0;
+  strcpy(pub.titulo, "Hola");
+  strcpy(pub.contenido, "asd");
+  NodeComment *rootc = (NodeComment*)malloc(sizeof(NodeComment));
+  pub.root = rootc;
   
   
-  //aux=Primero;
-  /*while(aux->nxt!=NULL)		//Print
-  {
-    printf("%s\t%d\t%s\t%s\t%s\n",aux->Nombre,aux->Edad,aux->email,aux->Usuario,aux->Contra);
-    aux=aux->nxt;
-  }*/
+  AgregarNodoPub(&pub, root);
   
+  COMMT comment;
   
+  comment.id=0;
+  comment.idP=0;
+  comment.idU=0;
+  strcpy(comment.contenido, "Hola");
+  
+  AgregarNodoComentario(&comment, root, rootc);
+  
+  printf("%d, %s", rootc->comentario.id, rootc->comentario.contenido);
   return 0;
 }

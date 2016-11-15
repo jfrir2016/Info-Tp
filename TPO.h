@@ -60,7 +60,7 @@ typedef struct Comentario
 
 typedef struct CommentNode
 {
-  struct Comentario commentario;
+  struct Comentario comentario;
   struct CommentNode *nxt;
 }NodeComment;
 
@@ -70,12 +70,6 @@ typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado c
   NodePub *pub;
 }Roots;
 
-typedef struct NodoGenerico
-{
-  struct User usuariogen;
-  struct Publicacion pubgen;
-  struct Comentario commentgen;
-}NODO;
 
 int Registro (Roots *);
 
@@ -87,7 +81,7 @@ void sigchld_handler(int);
 
 void AgregarNodoUsuario(USU*, NodeUser*);
 
-void AgregarNodoComentario(COMMT*, NodeComment*);
+void AgregarNodoComentario(COMMT*, NodePub*, NodeComment*);
 
 void AgregarNodoPub(PUB*, NodePub*);
 
@@ -96,7 +90,5 @@ int BorrarPub(int, NodePub);			//idem sig.
 int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
 int BorrarComentario(int, NodeComment);		//idem anterior
-
-int AgregarNodo(NODO*, Roots*, int);		//int <- NodeTypeDescriptor
 
 int Check (USU **,NodeUser *);
