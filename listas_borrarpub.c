@@ -13,6 +13,7 @@ int BorrarPub(int id, NodePub *root)
   }if(current!=*root){
     anterior->nxt=current->next;
   }else{
-    *root=current->next
+    free(current.publicacion.*root);
+    *root=current->next;
   }return 0;
 }
