@@ -12,7 +12,9 @@
 #include <signal.h>
 #include <netdb.h>
 
-#define FUSU "Usuarios.csv"
+#define FUSU "Usuarios"
+#define FPUB "Posts"
+
 #define PORT 43210
 #define BUFFER 255
 #define NUser 1			//NodeTypeDescriptor User

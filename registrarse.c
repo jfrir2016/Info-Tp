@@ -2,7 +2,7 @@
 
 int Registro (Roots *Ini)
 {
-  NODO *point;
+  USU *point;
   char Aux[8];
   int a;
   
@@ -12,29 +12,29 @@ int Registro (Roots *Ini)
     //system("clear");
   
     printf("Ingrese Nombre: ");
-    scanf("%s",point->usuariogen.Nombre);
+    scanf("%s",point->Nombre);
   
     printf("Ingrese edad: ");
-    scanf("%d",&(point->usuariogen.Edad));
+    scanf("%d",&(point->Edad));
   
     printf("Ingrese e-mail: ");
-    scanf("%s",point->usuariogen.email);
+    scanf("%s",point->.email);
   
     printf("Ingrese Usuario: ");
-    scanf("%s",point->usuariogen.Usuario);
+    scanf("%s",point->Usuario);
   
     printf("Ingrese Contraseña: ");
-    scanf("%s",point->usuariogen.Contra);
+    scanf("%s",point->Contra);
   
     printf("Repita Contraseña: ");
     scanf("%s",Aux);
-    a=strcmp(point->usuariogen.Contra,Aux);
+    a=strcmp(point->Contra,Aux);
     if(a)
       printf("ERROR: Contraseñas diferentes\n");
     //sleep(3);
   }while(a);
   
-  AgregarNodo(point,Ini,NUser);
+  AgregarNodoUsuario(point,Ini,NUser);
 
   return 0;
 }

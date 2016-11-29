@@ -1,21 +1,25 @@
 #include "TPO.h"
 
-int LoadUsuarios (USU **primero,char *archivo)
+int LoadUsuarios (NodeUser **primero,char *archivo)
 {
   FILE *fd;
-  USU *aux;
+  NodeUser *aux;
+  USU *datos;
   
   if((fd=fopen(archivo,"r"))==NULL)
     return 1;
-  aux=(USU*)malloc(sizeof(USU));
+  aux=(NodeUser*)malloc(sizeof(NodeUser));
   *primero=aux;
-  fread(aux,sizeof(USU),1,fd);
+  datos=&(aux->user);
+  fread(datos,sizeof(USU),1,fd);
   while(!feof(fd))
   {
-    aux->nxt=(USU*)malloc(sizeof(USU));
+    aux->nxt=(NodeUser*)malloc(sizeof(NodeUser));
     aux=aux->nxt;
-    fread(aux,sizeof(USU),1,fd);
+    datos=&(aux->user);
+    fread(datos,sizeof(USU),1,fd);
   }
   fclose(fd);
+  aux->nxt=NULL;
   return 0;
 }

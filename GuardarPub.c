@@ -1,17 +1,17 @@
 #include "TPO.h"
 
-int GuardarUsuarios (NodeUser *primero, char *archivo)
+int GuardarPost (NodePub *primero, char *archivo)
 {
   FILE* fd;
-  NodeUser* aux;
-  USU *datos;
+  NodePub* aux;
+  PUB *datos;
   
   if((fd=fopen(archivo,"w"))==NULL)
     return 1;
   for(aux=primero;aux!=NULL;)
   {
-    datos=&(aux->user);
-    fwrite(datos,sizeof(USU),1,fd);
+    datos=&(aux->publicacion);
+    fwrite(datos,sizeof(PUB),1,fd);
     primero=aux;
     aux=aux->nxt;
     free(primero);
