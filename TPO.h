@@ -75,9 +75,17 @@ typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado c
 
 int Registro (Roots *);
 
-int GuardarUsuarios (USU *primero, char *archivo);
+int GuardarUsuarios (USU *, char *);
+
+int GuardarPost (NodePub *, char *);
+
+int GuardarComents (NodePub *);
 
 int LoadUsuarios (USU**, char *);
+
+int LoadPubli (NodePub **,char *);
+
+int LoadComments (NodePub **);
 
 void sigchld_handler(int);
 
