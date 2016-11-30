@@ -66,6 +66,11 @@ typedef struct CommentNode
   struct CommentNode *nxt;
 }NodeComment;
 
+typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado con los roots de las listas principales
+{
+  NodeUser *user;
+  NodePub *pub;
+}Roots;
 
 
 int Registro (NodeUser *);
