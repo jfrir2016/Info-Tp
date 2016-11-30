@@ -2,8 +2,4 @@ $ cat .gitignore
 
 main.c
 ejecutable
-Ingresar.c~
-Notas~
-cliente.c~
-registrarse.c~
-server.c~
+*~
