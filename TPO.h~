@@ -37,20 +37,20 @@ typedef struct UserNode		//Usen esto para manejar usuarios en la lista
   struct UserNode *nxt;
 }NodeUser;
 
-typedef struct Publicacion
+typedef struct Post
 {
   int id;
   int idU;			//Id del usuario que la creo
   char titulo[20];
   char contenido[500];
   struct CommentNode *root;
-}PUB;
+}POST;
 
-typedef struct PublicationNode	//Para manejar publicaciones en la lista
+typedef struct PostNode	//Para manejar publicaciones en la lista
 {
-  struct Publicacion publicacion;
-  struct PublicationNode *nxt;
-}NodePub;
+  struct Post post;
+  struct PostNode *nxt;
+}NodePost;
 
 typedef struct Comentario
 {
@@ -66,36 +66,31 @@ typedef struct CommentNode
   struct CommentNode *nxt;
 }NodeComment;
 
-typedef struct roots		//Debe ser inicializado al inicio del servidor y cargado con los roots de las listas principales
-{
-  NodeUser *user;
-  NodePub *pub;
-}Roots;
 
 
 int Registro (NodeUser *);
 
 int GuardarUsuarios (USU *, char *);
 
-int GuardarPost (NodePub *, char *);
+int GuardarPost (NodePost *, char *);
 
-int GuardarComents (NodePub *);
+int GuardarComents (NodePost *);
 
 int LoadUsuarios (USU**, char *);
 
-int LoadPubli (NodePub **,char *);
+int LoadPubli (NodePost **,char *);
 
-int LoadComments (NodePub **);
+int LoadComments (NodePost **);
 
 void sigchld_handler(int);
 
 void AgregarNodoUsuario(USU*, NodeUser*);
 
-void AgregarNodoComentario(COMMT*, NodePub*, NodeComment*);
+void AgregarNodoComentario(COMMT*, NodePost*, NodeComment*);
 
-void AgregarNodoPub(PUB*, NodePub*);
+void AgregarNodoPub(POST*, NodePost*);
 
-int BorrarPub(int, NodePub);			//idem sig.
+int BorrarPub(int, NodePost);			//idem sig.
 
 int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
