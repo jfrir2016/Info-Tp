@@ -17,9 +17,6 @@
 
 #define PORT 43210
 #define BUFFER 255
-#define NUser 1			//NodeTypeDescriptor User
-#define NPub 2			//NodeTypeDescriptor Pub
-#define NComm 3			//NodeTypeDescriptor Comment
 
 typedef struct User
 {
