@@ -1,6 +1,6 @@
-#include "TPO.h"
+#include "Cliente.h"
 
-int Registro (NodeUser *Ini)
+usu* Registro (void)
 {
 	USU Datos;
   char Aux[8];

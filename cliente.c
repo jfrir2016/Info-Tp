@@ -1,6 +1,6 @@
 //	CLIENT
 
-#include "TPO.h"
+#include "Cliente.h"
 
 int main(void)
 {
@@ -8,7 +8,8 @@ int main(void)
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
 	int a;
-	char* (*Menu1[])(NodeUser*)={Ingresar,Registro};
+	usu buff;
+	int (*Menu1[])(usu*)={Ingresar,Registro};
 	
   struct  sockaddr_in server_addr;
   struct hostent *he;
@@ -35,7 +36,14 @@ int main(void)
 	{
 		printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
 		scanf("%d",a);
-		menu[a](URoot);
+		menu[a](&buff);
+		
+		if((send(sockfd,buff,strlen(buff),0,)))==-1)
+		{
+			perror("Sendto: ");
+			exit(1);
+		}
+		
 	}while(id<0);
 	
 	

@@ -1,17 +1,11 @@
-#include "TPO.h"
+#include "Cliente.h"
 
-int Ingresar (NodeUser *)
-{
-	USU *Name;
-	int id;
-	
-	Name=(USU*)malloc(sizeof(USU));
+int Ingresar (usu *dir)
+{	
 	printf("Ingrese Nombre de Usuario: ");
-	scanf("%s",Name->Usuario);
+	scanf("%s",dir->Usuario);
 	printf("Ingrese Contraseña: ");
-	scanf("%s",Name->Contra);
-	id=Check(&Name,URoot)
-	if(id==-1)
-		return -1;
-	return id;
+	scanf("%s",dir->Contra);
+	//Falta contemplar errores
+	return 0;
 }

@@ -4,7 +4,7 @@ int Registro (NodeUser *Ini)
 {
 	USU Datos;
   char Aux[8];
-  int a;
+  int a,id;
   
   do
   {
@@ -33,8 +33,8 @@ int Registro (NodeUser *Ini)
     //sleep(3);
   }while(a);
   
-  AgregarNodoUsuario(&Datos,Ini);
+  id=AgregarNodoUsuario(&Datos,Ini);
 
-  return 0;
+  return id;
 }
   

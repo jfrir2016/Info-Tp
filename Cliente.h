@@ -12,6 +12,19 @@
 #include <signal.h>
 #include <netdb.h>
 
-int Registro (NodeUser *);
+#define BUFFER 255
 
-int Ingresar (NodeUser *);
+typedef struct User
+{
+  int id;
+  char Nombre[20];
+  int Edad;
+  char Usuario[20];
+  char Contra[8];
+  char email[35];
+}usu;
+
+
+int Registro (usu*);
+
+int Ingresar (usu*);
