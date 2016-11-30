@@ -75,6 +75,11 @@ int main (void)
 				//proceso hijo
 				close(sockfd);
 				
+				if((recv(sockfd,buff,strlen(buff),0,)))==-1)
+					{
+					perror("Sendto: ");
+					exit(1);
+					}
 				
 				
 				
