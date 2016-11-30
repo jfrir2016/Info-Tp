@@ -1,17 +1,22 @@
 #include "TPO.h"
 
-void AgregarNodoUsuario(USU *usuario, NodeUser *root)
+int AgregarNodoUsuario(USU *usuario, NodeUser *root)
 {
   NodeUser *current=root;
   
-  if(current==NULL){
+  int id=1;
+  
+  if(current->user==NULL){
     current->user=*usuario;
-    return;
+    current->user.id=id;
+    return id;
   }
   while(current->nxt!=NULL){
     current=current->nxt;
   }
   current->nxt=(NodeUser*)malloc(sizeof(NodeUser));
   current->nxt->user=*usuario;
-  return;
+  id=(current->user.id)++;
+  current->nxt->user.id=id;
+  return id;
 }

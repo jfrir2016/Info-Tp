@@ -12,8 +12,13 @@ int BorrarPub(int id, NodePost *root)
     current=current->nxt;
   }if(current!=*root){
     anterior->nxt=current->next;
+    if(current.post.root!=NULL){
+      free(current.post.root);
+    }
   }else{
-    free(current.post.*root);
-    *root=current->next
+    if(current.post.root!=NULL){
+      free(current.post.root);
+    }
+    *root=current->next;
   }return 0;
 }
