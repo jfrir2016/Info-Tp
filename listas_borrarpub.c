@@ -12,13 +12,15 @@ int BorrarPub(int id, NodePost *root)
     current=current->nxt;
   }if(current!=*root){
     anterior->nxt=current->next;
-    if(current.post.root!=NULL){
-      free(current.post.root);
+    while(current.post.root!=NULL){
+      BorrarComentario(current.post.root->comentario.id, current.post.root);
     }
+    free(current);
   }else{
-    if(current.post.root!=NULL){
-      free(current.post.root);
+    while(current.post.root!=NULL){
+      BorrarComentario(current.post.root->comentario.id, current.post.root);
     }
-    *root=current->next;
+    *root=root->next;
+    free(current);
   }return 0;
 }

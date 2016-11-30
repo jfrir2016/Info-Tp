@@ -12,7 +12,9 @@ int BorrarComentario(int id, NodeComment *root)
     current=current->nxt;
   }if(current!=*root){
     anterior->nxt=current->next;
+    free(current);
   }else{
-    *root=current->next
+    *root=root->next;
+    free(current);
   }return 0;
 }
