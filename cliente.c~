@@ -8,7 +8,8 @@ int main(void)
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
 	int a;
-	USU *Name;
+	int (*Menu1)(NodeUser*)[]={Ingresar,Registro};
+	
   struct  sockaddr_in server_addr;
   struct hostent *he;
   
@@ -30,17 +31,10 @@ int main(void)
     exit(1);
   }
   
-  printf("1) Ingresar\n2) Registrarse\n");
-	scanf("%d",&a);
-	switch(a)
-	{
-		case 1:
-			Name=(USU*)malloc(sizeof(USU));
-			printf("Ingrese Nombre de Usuario: ");
-			scanf("%s",Name->Usuario);
-			printf("Ingrese Contraseña: ");
-			scanf("%s",Name->Contra);
-			if(Check(&Name,URoot))
+  printf("\t\tMenu de Inicio\n1)Ingrsar\n2)Registrarse\n");
+	scanf("%d",a);
+	int(menu[a])(
+  
   
   
   

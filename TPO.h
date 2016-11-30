@@ -67,9 +67,6 @@ typedef struct CommentNode
 }NodeComment;
 
 
-
-int Registro (NodeUser *);
-
 int GuardarUsuarios (USU *, char *);
 
 int GuardarPost (NodePost *, char *);

@@ -8,7 +8,7 @@ int main(void)
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
 	int a;
-	int (*Menu1)(NodeUser*)[]={Ingresar,Registro};
+	char* (*Menu1[])(NodeUser*)={Ingresar,Registro};
 	
   struct  sockaddr_in server_addr;
   struct hostent *he;
@@ -31,11 +31,18 @@ int main(void)
     exit(1);
   }
   
-  printf("\t\tMenu de Inicio\n1)Ingrsar\n2)Registrarse\n");
-	scanf("%d",a);
-	int(menu[a])(
-  
-  
+  do
+	{
+		printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
+		scanf("%d",a);
+		menu[a](URoot);
+	}while(id<0);
+	
+	
+	
+	
+	
+	
   
   
   

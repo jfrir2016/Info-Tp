@@ -12,6 +12,6 @@ int Ingresar (NodeUser *)
 	scanf("%s",Name->Contra);
 	id=Check(&Name,URoot)
 	if(id==-1)
-		return 1;
+		return -1;
 	return id;
 }
