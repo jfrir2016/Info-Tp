@@ -1,23 +1,23 @@
 #include "TPO.h"
 
-int LoadPubli (NodePub **primero,char *archivo)
+int LoadPubli (NodePost **primero,char *archivo)
 {
   FILE *fd;
-  NodePub *aux;
-  PUB *datos
+  NodePost *aux;
+  POST *datos
   
   if((fd=fopen(archivo,"r"))==NULL)
     return 1;
-  aux=(NodePub*)malloc(sizeof(NodePub));
+  aux=(NodePost*)malloc(sizeof(NodePost));
   *primero=aux;
-  datos=&(aux->publicacion);
-  fread(datos,sizeof(PUB),1,fd);
+  datos=&(aux->post);
+  fread(datos,sizeof(POST),1,fd);
   while(!feof(fd))
   {
-    aux->nxt=(NodePub*)malloc(sizeof(NodePub));
+    aux->nxt=(NodePost*)malloc(sizeof(NodePost));
     aux=aux->nxt;
-    datos=&(aux->publicacion);
-    fread(datos,sizeof(PUB),1,fd);
+    datos=&(aux->post);
+    fread(datos,sizeof(POST),1,fd);
   }
   fclose(fd);
   aux->nxt=NULL;
