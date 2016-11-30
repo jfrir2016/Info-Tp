@@ -83,6 +83,7 @@ int main (void)
 				
 				
 				
+				
 				strcpy(buffer,"Ingrese 0 para iniciar sesion y 1 para registrarse\n");
 				if((sendto(new_fd,buffer,strlen(buffer),0,(struct sockaddr *) &client_addr,sizeof(struct sockaddr)))==-1)
 				{
