@@ -8,7 +8,8 @@ void AgregarNodoComentario(COMMT *comentario, NodePost *rootp, NodeComment *root
       if(currentpost->post.id==comentario->idP){
 	
 	if(current==NULL){
-	  current->comentario=*comentario;
+	  rootc = (NodePub*)malloc(sizeof(NodePub));
+	  rootc->comentario=*comentario;
 	  return;
 	}
 	while(current->nxt!=NULL){

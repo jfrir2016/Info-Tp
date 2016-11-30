@@ -84,7 +84,7 @@ int LoadComments (NodePost **);
 
 void sigchld_handler(int);
 
-void AgregarNodoUsuario(USU*, NodeUser*);
+int AgregarNodoUsuario(USU*, NodeUser*);
 
 void AgregarNodoComentario(COMMT*, NodePost*, NodeComment*);
 

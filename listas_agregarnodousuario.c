@@ -6,9 +6,10 @@ int AgregarNodoUsuario(USU *usuario, NodeUser *root)
   
   int id=1;
   
-  if(current->user==NULL){
-    current->user=*usuario;
-    current->user.id=id;
+  if(current==NULL){
+    root = (NodeUser*)malloc(sizeof(NodeUser));
+    root->user=*usuario;
+    root->user.id=id;
     return id;
   }
   while(current->nxt!=NULL){

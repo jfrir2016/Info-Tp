@@ -5,7 +5,8 @@ void AgregarNodoPub(POST *post, NodePub *root)
   NodePub *current=root;
   
    if(current==NULL){
-    current->post=*post;
+    root = (NodePub*)malloc(sizeof(NodePub));
+    root->post=*post;
     return;
   }
   
