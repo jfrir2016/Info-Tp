@@ -96,4 +96,4 @@ int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
 int BorrarComentario(int, NodeComment);		//idem anterior
 
-int Check (USU **);
+int Check (USU **,NodeUser *);
