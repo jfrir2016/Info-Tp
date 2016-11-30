@@ -17,12 +17,13 @@ int Check (USU **cli,NodeUser *primo)
     a=a->nxt;
     e=strcmp((*cli)->Usuario,a->user->Usuario);
   }
-  if(a->nxt==NULL)
-    return 1;
-  if(strcmp((*cli)->Contra,a->user->Contra))
-    return 1;
-  *cli=a;
-  return a->user->id;
+  if(e){
+    return -1;
+  }
+  if(!strcmp((*cli)->Contra,a->user->Contra))
+    return a->user->id;
+  
+  return -1;
 }
 
     
