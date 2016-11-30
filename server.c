@@ -10,8 +10,9 @@ int main (void)
 	NodeComment *CRoot=NULL;
 	
 	int sockfd, accion, new_fd, size;
+	int id;
   char buffer[BUFFER];
-  
+  USU *buff;
 	
 	struct sockaddr_in server_addr;
   struct sockaddr_in client_addr;
@@ -74,12 +75,18 @@ int main (void)
       {
 				//proceso hijo
 				close(sockfd);
-				
-				if((recv(sockfd,buff,strlen(buff),0,)))==-1)
-					{
+				buff=(USU*)malloc(sizeof(USU));
+				if((recv(sockfd,buff,strlen(USU),0,)))==-1)
+				{
 					perror("Sendto: ");
 					exit(1);
-					}
+				}
+				if(buff.id==1)
+					id=Check(&buff,URoot);
+				else
+					id=AgregarNodoUsuario(buff, URoot)
+					
+					
 				
 				
 				

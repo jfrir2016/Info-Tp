@@ -1,14 +1,11 @@
 #include "Cliente.h"
 
-usu* Ingresar (void)
-{
-	usu Datos;
-	int id;
-	
+int Ingresar (usu *dir)
+{	
 	printf("Ingrese Nombre de Usuario: ");
-	scanf("%s",Datos.Usuario);
+	scanf("%s",dir->Usuario);
 	printf("Ingrese Contraseña: ");
-	scanf("%s",Datos.Contra);
+	scanf("%s",dir->Contra);
 	//Falta contemplar errores
-	return &Datos;
+	return 0;
 }
