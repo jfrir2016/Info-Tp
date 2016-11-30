@@ -5,10 +5,17 @@ void AgregarNodoComentario(COMMT *comentario, NodePost *rootp, NodeComment *root
   NodeComment *current=rootc;
   NodePost *currentpost=rootp;
   do{
-      if(currentpost->publicacion.id==comentario->idP){
+      if(currentpost->post.id==comentario->idP){
+	
+	if(current==NULL){
+	  current->comentario=*comentario;
+	  return;
+	}
 	while(current->nxt!=NULL){
 	  current=current->nxt;
-	}current->comentario=*comentario;
+	}
+	current->nxt=(NodeComment*)malloc(sizeof(NodeComment));
+	current->nxt->comentario=*comentario;
 	return;
       }if(currentpost->nxt!=NULL)
 	currentpost=currentpost->nxt;

@@ -46,7 +46,7 @@ typedef struct Post
   struct CommentNode *root;
 }POST;
 
-typedef struct PostNode	//Para manejar publicaciones en la lista
+typedef struct PostNode		//Para manejar publicaciones en la lista
 {
   struct Post post;
   struct PostNode *nxt;

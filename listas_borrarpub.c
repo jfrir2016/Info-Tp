@@ -1,10 +1,10 @@
 #include "TPO.h"
 
-int BorrarPub(int id, NodePub *root)
+int BorrarPub(int id, NodePost *root)
 {
-  NodePub anterior=*root;
-  NodePub current=*root;
-  while(current->publicacion.id!=id){
+  NodePost anterior=*root;
+  NodePost current=*root;
+  while(current->post.id!=id){
     anterior=current;
     if(current->next==NULL){
       return 1;
@@ -13,7 +13,7 @@ int BorrarPub(int id, NodePub *root)
   }if(current!=*root){
     anterior->nxt=current->next;
   }else{
-    free(current.publicacion.*root);
+    free(current.post.*root);
     *root=current->next
   }return 0;
 }
