@@ -3,21 +3,27 @@
 int Check (USU **cli,NodeUser *primo)
 {
   int e;
-  USU *a;
+  NodeUser *a;
   
   a=primo;
-  e=strcmp((*cli)->Usuario,a->Usuario);
+  
+  if(a==NULL){
+    return -1;
+  }
+  
+  e=strcmp((*cli)->Usuario,a->user->Usuario);
   while(e!=0&&a->nxt!=NULL)
   {
     a=a->nxt;
-    e=strcmp((*cli)->Usuario,a->Usuario);
+    e=strcmp((*cli)->Usuario,a->user->Usuario);
   }
-  if(a->nxt==NULL)
-    return 1;
-  if(strcmp((*cli)->Contra,a->Contra))
-    return 1;
-  *cli=a;
-  return 0;
+  if(e){
+    return -1;
+  }
+  if(!strcmp((*cli)->Contra,a->user->Contra))
+    return a->user->id;
+  
+  return -1;
 }
 
     
