@@ -19,4 +19,5 @@ int Check (USU **cli,NodeUser *primo)
   *cli=a;
   return 0;
 }
+
     

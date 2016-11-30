@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int Check (USU **cli,NodeUser *primo)
+int Check (USU **cli)
 {
   int e;
   USU *a;
