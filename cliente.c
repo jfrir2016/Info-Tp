@@ -2,27 +2,17 @@
 
 #include "TPO.h"
 
-int main(int argc, char* argv[])
+int main(void)
 {
   
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
+	int a;
+	USU *Name;
   struct  sockaddr_in server_addr;
   struct hostent *he;
   
-  
-  if(argc != 2)
-  {
-    printf("ingrese la IP a quien conectarse\n");
-    exit(1);
-  }
-  
-  if((he=gethostbyname(argv[1]))==NULL)
-  {
-    printf("Error en la direccion ip\n");
-    exit(1);
-  }
-  
+   
   if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1)
   {
     perror("Socket: ");
@@ -39,6 +29,37 @@ int main(int argc, char* argv[])
     perror("Connect: ");
     exit(1);
   }
+  
+  printf("1) Ingresar\n2) Registrarse\n");
+	scanf("%d",&a);
+	switch(a)
+	{
+		case 1:
+			Name=(USU*)malloc(sizeof(USU));
+			printf("Ingrese Nombre de Usuario: ");
+			scanf("%s",Name->Usuario);
+			printf("Ingrese Contraseña: ");
+			scanf("%s",Name->Contra);
+			if(Check(&Name,URoot))
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   accion=0;//para que reciba la primera vez que entre
   

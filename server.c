@@ -5,7 +5,10 @@
 int main (void)
 {
   
-  
+  NodeUser *URoot=NULL;
+	NodePost *PRoot=NULL;
+	NodeComment *CRoot=NULL;
+	
 	int sockfd, accion, new_fd, size;
   char buffer[BUFFER];
   
@@ -27,44 +30,47 @@ int main (void)
   server_addr.sin_addr.s_addr= INADDR_ANY;
   memset(&(server_addr.sin_zero),'\0',8);
   
-	LoadUsuarios (NodeUser **primero,char *archivo)
-  LoadComments (NodePub **primero)
 	
 	
-    if((bind(sockfd,(struct sock_addr *)&server_addr, sizeof(struct sock_addr)))==-1)
-    {
-      perror("Bind: ");
-      exit(1);
-    }
+  if((bind(sockfd,(struct sock_addr *)&server_addr, sizeof(struct sock_addr)))==-1)
+  {
+    perror("Bind: ");
+    exit(1);
+  }
   
+	if(LoadUsuarios (&URoot,FUSU))					//Levanto todas las listas
+		printf("Error Cargar Listas\n");
+	if(LoadPubli (&PRoot,FPUB))
+		printf("Error Cargar Listas\n");
+	if(LoadComments (&PRoot))
+		printf("Error Cargar Listas\n");
     
-    if(listen(sockfd,MEMSET)==-1)
-    {
-      perror("Listen: ");
-      exit(1);
-    }
+  if(listen(sockfd,MEMSET)==-1)
+  {
+    perror("Listen: ");
+    exit(1);
+  }
   
-    if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
-    {
-      perror("signal");
-      exit(1);
-    }
+  if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
+  {
+    perror("signal");
+    exit(1);
+  }
     
-    
-    while(1)
-    {
-    
-      size = sizeof(struct sockaddr_in);
+  while(1)
+  {
+  
+    size = sizeof(struct sockaddr_in);
       
-      if((new_fd=accept(sockfd,&client_addr,&size))==-1)
-      {
-				perror("Accept");
-				exit(1);
-      }
+    if((new_fd=accept(sockfd,&client_addr,&size))==-1)
+    {
+			perror("Accept");
+			exit(1);
+    }
     
-      printf("Se recibio conexion de: %s", inet_ntoa(client_addr.sin_addr));
+    printf("Se recibio conexion de: %s", inet_ntoa(client_addr.sin_addr));
     
-      if(!fork())
+    if(!fork())
       {
 				//proceso hijo
 				close(sockfd);
@@ -96,8 +102,8 @@ int main (void)
 				}
       }
       
-      //proceso padre
-      close(new_fd)
+		//proceso padre
+    close(new_fd)
     
     }
     return 0;
