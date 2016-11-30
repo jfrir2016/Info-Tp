@@ -1,10 +1,10 @@
 #include "TPO.h"
 
-int LoadComments (NodePost **primero)
+int LoadComments (NodePub **primero)
 {
   FILE *fd;
   NodeComment *aux,*first;
-  NodePost *read;
+  NodePub *read;
   COMMT *datos;
   char Archivo[8];
   
