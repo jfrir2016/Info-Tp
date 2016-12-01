@@ -1,12 +1,12 @@
 #include "TPO.h"
-
+//guarda los post en un archivo
 int GuardarPost (NodePost *primero, char *archivo)
 {
   FILE* fd;
   NodePost* aux;
   POST *datos;
   
-  if((fd=fopen(archivo,"w"))==NULL)
+  if((fd=fopen(archivo,"w"))==NULL)//abre el archivo en modo escritura ¡Creo que habria q abrirlo con "a", ya q escribe al final!
     return 1;
   for(aux=primero;aux!=NULL;)
   {

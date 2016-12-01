@@ -6,7 +6,7 @@ int GuardarUsuarios (NodeUser *primero, char *archivo)
   NodeUser* aux;
   USU *datos;
   
-  if((fd=fopen(archivo,"w"))==NULL)//abre el archivo en modo escritura
+  if((fd=fopen(archivo,"w"))==NULL)//abre el archivo en modo escritura ¡Creo q seria mejor abrirlocon "a"!
     return 1;
   for(aux=primero;aux!=NULL;)
   {
@@ -14,7 +14,7 @@ int GuardarUsuarios (NodeUser *primero, char *archivo)
     fwrite(datos,sizeof(USU),1,fd);
     primero=aux;
     aux=aux->nxt;
-    free(primero);//libera memoria ocupada nodo
+    free(primero);//libera memoria ocupada x el  ¿nodo
   }
   fclose(fd);
   return 0;
