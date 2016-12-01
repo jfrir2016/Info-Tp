@@ -10,7 +10,7 @@ int GuardarComents (NodePost *primero)
   
   for(read=primero;read!=NULL;read=read->nxt)
   {
-    sprintf(Archivo,"%d.c",read->publicacion.id);
+    sprintf(Archivo,"%d.c",read->publicacion.id);// sprintf????
     
     if((fd=fopen(Archivo,"w"))==NULL)
       return 1;
