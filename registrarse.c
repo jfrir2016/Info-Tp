@@ -30,7 +30,7 @@ int Registro (usu *Datos)
     if(a)
       printf("ERROR: Contraseñas diferentes\n");
     //sleep(3);
-		dir->id=2;
+    Datos->id=2;
 		
   }while(a);
   

@@ -12,7 +12,7 @@
 #include <signal.h>
 #include <netdb.h>
 
-#define BUFFER 255
+#define BUFFER 100
 
 typedef struct User
 {
@@ -23,6 +23,15 @@ typedef struct User
   char Contra[8];
   char email[35];
 }usu;
+
+typedef struct Post
+{
+  int id;
+  int idU;			//Id del usuario que la creo
+  char titulo[100];
+  char contenido[500];
+  struct CommentNode *root;
+}post;
 
 
 int Registro (usu*);

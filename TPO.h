@@ -38,7 +38,7 @@ typedef struct Post
 {
   int id;
   int idU;			//Id del usuario que la creo
-  char titulo[20];
+  char titulo[100];
   char contenido[500];
   struct CommentNode *root;
 }POST;

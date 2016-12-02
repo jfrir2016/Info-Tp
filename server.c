@@ -4,17 +4,18 @@
 
 int main (void)
 {
-  
   NodeUser *URoot=NULL;
-	NodePost *PRoot=NULL;
-	NodeComment *CRoot=NULL;
+  NodePost *PRoot=NULL;
+  NodeComment *CRoot=NULL;
 	
-	int sockfd, accion, new_fd, size;
-	int id;
-  char buffer[BUFFER];
+  int sockfd, accion, new_fd, size;
+  int id, sel, i;
+  char* buffer[BUFFER];
+  
   USU *buff;
+  POST *find;
 	
-	struct sockaddr_in server_addr;
+  struct sockaddr_in server_addr;
   struct sockaddr_in client_addr;
   
   
@@ -65,68 +66,86 @@ int main (void)
       
     if((new_fd=accept(sockfd,&client_addr,&size))==-1)
     {
-			perror("Accept");
-			exit(1);
+	perror("Accept");
+	exit(1);
     }
     
     printf("Se recibio conexion de: %s", inet_ntoa(client_addr.sin_addr));
     
     if(!fork())
-      {
-				//proceso hijo
-				close(sockfd);
-				buff=(USU*)malloc(sizeof(USU));
-				if((recv(sockfd,buff,strlen(USU),0,)))==-1)
-				{
-					perror("Sendto: ");
-					exit(1);
-				}
-				if(buff.id==1)
-					id=Check(&buff,URoot);
-				else
-					id=AgregarNodoUsuario(buff, URoot)
-					
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				strcpy(buffer,"Ingrese 0 para iniciar sesion y 1 para registrarse\n");
-				if((sendto(new_fd,buffer,strlen(buffer),0,(struct sockaddr *) &client_addr,sizeof(struct sockaddr)))==-1)
-				{
-					perror("Sendto: ");
-					exit(1);
-				}
-				accion=2;
-				if((write(new_fd,&accion,sizeof(accion)))==-1)
-				{
-					perror("Write: ")
-					exit(1);
-				}
+    {
+	//proceso hijo
+	close(sockfd);
+	buff=(USU*)malloc(sizeof(USU));
+	do
+	{
+	  if((recv(sockfd,buff,sizeof(USU),0,))==-1)	//recive seleccio de Menu de Inicio
+	  {
+	    perror("Recv: ");
+	    exit(1);
+	  }
+	  if(buff->id==1)
+	    id=Check(&buff,URoot);			//Logueo
+	  else
+	    id=AgregarNodoUsuario(buff,URoot);		//Registro
 	
-				if((read(new_fd,&accion,sizeof(accion)))==-1)
-				{
-					perror("Read: ")
-					exit(1);
-				}
+	  //BuscarNombreDeId
 	
-				switch(accion)
-				{
-					case 0://iniciar sesion
-					break;
-					case 1://registrarse
-					break;
-				}
-      }
+	  if((send(sockfd,&id,sizeof(int),0,))==-1)	//Envia respuesta
+	  {
+	    perror("Send: ");
+	    exit(1);
+	  }
+	}while(id<0); //Bucle
+	
+	if((recv(sockfd,&sel,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
+	{
+	  perror("Recv: ");
+	  exit(1);
+	}
+	switch(sel)
+	  case 1:
+	    //ListarPost(buffer,PRoot);
+	    for(i=0;strcmp(*(buffer[i]),"0")!=0;i++)
+	    {
+	      if((send(sockfd,buffer[i],strlen(buffer[i]),0,))==-1)	//Envio post a post
+	      {
+		perror("Send: ");
+		exit(1);
+	      }
+	    }
+	    if((send(sockfd,buffer[i],strlen(buffer[i]),0,))==-1)	//Envio 0 para final
+	      {
+		perror("Send: ");
+		exit(1);
+	      }
+	      
+	    if((recv(sockfd,&sel,sizeof(int),0,))==-1)	//Recivo seleccion
+	    {
+	      perror("Recv: ");
+	      exit(1);
+	    }
+	    //find=BuscoPub(buffer[sel],PRoot);
+	    if((send(sockfd,find,sizeof(POST),0,))==-1)	//Envio publicacion Entera
+	      {
+		perror("Send: ");
+		exit(1);
+	      }					//Falta considerar comentar y demas
+	  case 2:
+	    
+	    
+	    
+	    
+	      
+	    
+	
+	
+	
+	
       
-		//proceso padre
+    }			//proceso padre
     close(new_fd)
     
-    }
-    return 0;
+  }
+  return 0;
 }

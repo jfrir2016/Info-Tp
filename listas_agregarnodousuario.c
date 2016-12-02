@@ -21,3 +21,5 @@ int AgregarNodoUsuario(USU *usuario, NodeUser *root)
   current->nxt->user.id=id;
   return id;
 }
+
+//Revisar!!

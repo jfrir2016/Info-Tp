@@ -7,9 +7,11 @@ int main(void)
   
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
-	int a;
-	usu buff;
-	int (*Menu1[])(usu*)={Ingresar,Registro};
+  int a, id, i=0;
+  
+  usu buff;
+  post bufp;
+  int (*Menu1[])(usu*)={Ingresar,Registro};
 	
   struct  sockaddr_in server_addr;
   struct hostent *he;
@@ -33,30 +35,68 @@ int main(void)
   }
   
   do
+  {
+    printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
+    scanf("%d",a);
+    a--;
+    menu[a](&buff);				//Llamo a funcion Ingresar o Registrarse
+
+    if((send(sockfd,buff,sizeof(buff),0,))==-1) //Envio datos de Usuario
+    {
+      perror("Send: ");
+      exit(1);
+    }
+    if((recv(sockfd,&id,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
+    {
+      perror("Recv: ");
+      exit(1);
+    }
+  }while(id<0);
+  
+  printf("\t\tMenu Principal\n1)Ver Publicaciones\n2)Crear Publicacion\n3)Borrar Publicacion\n4)Darse de Baja\n5)Salir");
+  scanf("%d",&a);
+  
+  if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+  {
+    perror("Send: ");
+    exit(1);
+  }
+  
+  switch(a)
+  {
+    case 1:
+      if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
 	{
-		printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
-		scanf("%d",a);
-		menu[a](&buff);
-		
-		if((send(sockfd,buff,strlen(buff),0,)))==-1)
-		{
-			perror("Sendto: ");
-			exit(1);
-		}
-		
-	}while(id<0);
-	
-	
-	
-	
-	
-	
-  
-  
-  
-  
-  
-  
+	  perror("Recv: ");
+	  exit(1);
+	}
+      while(strcmp(buffer,"0"))
+      {
+	i++;
+	printf("%d)%s\n",i,buffer);
+	if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
+	{
+	  perror("Recv: ");
+	  exit(1);
+	}
+      }
+      if(!strcmp(buffer,"0"))
+	printf("No hay Publicaciones\n");
+      
+      scanf("%d",&a);
+      if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+      {
+	perror("Send: ");
+	exit(1);
+      }
+      if((recv(sockfd,&bufp,sizeof(post),0,))==-1)	//Recivo Publicacion
+      {
+	  perror("Recv: ");
+	  exit(1);
+      }
+      printf("%s\n\n%s\n",bufp.titulo,bufp.contenido);	//Muestro
+    case 2:
+      
   
   
   
