@@ -12,6 +12,8 @@ int main (void)
   int id, sel, i;
   char* buffer[BUFFER];
   
+  buffer[BUFFER]=NULL; //pongo el ultimo puntero a NULL para saber que termino
+  
   USU *buff;
   POST *find;
 	
