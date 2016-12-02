@@ -107,7 +107,7 @@ int main (void)
 	}
 	switch(sel)
 	  case 1:
-	    //ListarPost(buffer,PRoot);
+	    ListarPost(buffer,PRoot);
 	    for(i=0;strcmp(*(buffer[i]),"0")!=0;i++)
 	    {
 	      if((send(sockfd,buffer[i],strlen(buffer[i]),0,))==-1)	//Envio post a post
