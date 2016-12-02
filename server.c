@@ -127,7 +127,7 @@ int main (void)
 	      perror("Recv: ");
 	      exit(1);
 	    }
-	    //find=BuscoPub(buffer[sel],PRoot);
+	    find=BuscoPub(buffer[sel],PRoot);
 	    if((send(sockfd,find,sizeof(POST),0,))==-1)	//Envio publicacion Entera
 	      {
 		perror("Send: ");
