@@ -62,39 +62,40 @@ int main(void)
     exit(1);
   }
   
-  switch(a)
+  do
   {
-    case 1:
-      if((recv(sockfd,&cant,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
-      {
-	perror("Recv: ");
-	exit(1);
-      }
-      if(cant==0)
-	printf("No hay Publicaciones\n");
-	
-      for(i=1,i<=cant,i++)
-      {
-	if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
+    switch(a)
+    {
+      case 1:
+	if((recv(sockfd,&cant,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
 	{
 	  perror("Recv: ");
 	  exit(1);
 	}
-	printf("%d)%s\n",i,buffer);
-      }
-      scanf("%d",&a);
-      if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
-      {
-	perror("Send: ");
-	exit(1);
-      }
-      if((recv(sockfd,&bufp,sizeof(post),0,))==-1)	//Recivo Publicacion
-      {
+	if(cant==0)
+	  printf("No hay Publicaciones\n");
+	for(i=1,i<=cant,i++)
+	{
+	  if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
+	  {
+	    perror("Recv: ");
+	    exit(1);
+	  }
+	  printf("%d)%s\n",i,buffer);
+	}
+	scanf("%d",&a);
+	if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+	{
+	  perror("Send: ");
+	  exit(1);
+	}
+	if((recv(sockfd,&bufp,sizeof(post),0,))==-1)	//Recivo Publicacion
+	{
 	  perror("Recv: ");
 	  exit(1);
-      }
-      printf("%s\n\n%s\n",bufp.titulo,bufp.contenido);	//Muestro
-      break;
+	}
+	printf("%s\n\n%s\n",bufp.titulo,bufp.contenido);	//Muestro
+	break;
       case 2:
 	printf("Ingrese Titulo de Publicacion\n");
 	scanf("%s",bufp.titulo);
@@ -147,8 +148,10 @@ int main(void)
       case 5:
 	print("Hasta Luego\n");
 	break;
-  }
+    }
+  }while(a<4);
   
   close(sockfd);
+  
   return 0;
 }
