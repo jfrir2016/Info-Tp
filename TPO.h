@@ -85,11 +85,11 @@ void AgregarNodoComentario(COMMT*, NodePost*, NodeComment*);
 
 void AgregarNodoPub(POST*, NodePost*);
 
-int BorrarNodoPub(int, NodePost);			//idem sig.
+int BorrarNodoPub(int, NodePost*);			//idem sig.
 
-int BorrarNodoUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
+int BorrarNodoUsuario(int, NodeUser*);		//retorna 0 si se borro, 1 si no se encontro
  
-int BorrarComentario(int, NodeComment);		//idem anterior
+int BorrarComentario(int, NodeComment*);		//idem anterior
 
 int Check (USU **,NodeUser *);
 
@@ -99,8 +99,8 @@ int Posteo (int, NodePost*, int, NodeUser*);
 
 int AgregarPost (int, NodePost*, int, NodeUser*);
 
-int BorrarPost (int, NodePost*, int, NodeUser*)
+int BorrarPost (int, NodePost*, int, NodeUser*);
 
-int BajUsu (int, NodePost*, int, NodeUser*)
+int BajaUsu (int, NodePost*, int, NodeUser*);
 
 //void ListarPost (char**, NodePost*);
