@@ -4,6 +4,7 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
 {
   char* buffer[BUFFER];
   POST *find;
+  NodePost *Aux=PRoot;
   int sel,i;
   
   buffer[BUFFER]=NULL; 						//pongo el ultimo puntero a NULL para saber que termino
@@ -30,7 +31,7 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
     }
   }
   
-  if((recv(sockfd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
+  if((recv(fd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
   {
     perror("Recv: ");
     exit(1);

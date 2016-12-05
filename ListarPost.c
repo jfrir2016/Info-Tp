@@ -32,15 +32,15 @@ int Posteo (int fd, NodePost *PRoot, int id)
     }
   }
   
-  if((recv(sockfd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
+  if((recv(fd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
   {
     perror("Recv: ");
     exit(1);
   }
   
   sel--;
-  find=BuscoPub(buffer[sel],PRoot);
-  if((send(sockfd,find,sizeof(POST),0))==-1)			//Envio publicacion Entera
+  find=BuscoPost(buffer[sel],PRoot);
+  if((send(fd,find,sizeof(POST),0))==-1)			//Envio publicacion Entera
   {
     perror("Send: ");
     exit(1);

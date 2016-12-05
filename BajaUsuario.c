@@ -1,10 +1,11 @@
 #include "TPO.h"
 
-int BajaUsu (int id, NodeUser *URoot)
+int BajaUsu (int fd, NodeUser *URoot,int id)
 {
+  int a;
   if(!(a=BorrarNodoUsuario(id,URoot)))
   {
-    if((send(sockfd,&a,sizeof(int),0))==-1)	//Envia 1 por correcto
+    if((send(fd,&a,sizeof(int),0))==-1)	//Envia 1 por correcto
     {
       perror("Send: ");
       exit(1);
@@ -12,7 +13,7 @@ int BajaUsu (int id, NodeUser *URoot)
   }
   else
   {
-    if((send(sockfd,&a,sizeof(int),0))==-1)	//Envia 0 por error
+    if((send(fd,&a,sizeof(int),0))==-1)	//Envia 0 por error
     {
       perror("Send: ");
       exit(1);

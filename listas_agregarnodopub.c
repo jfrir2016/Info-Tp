@@ -1,11 +1,11 @@
 #include "TPO.h"
 
-void AgregarNodoPub(POST *post, NodePub *root)
+void AgregarNodoPub(POST *post, NodePost *root)
 {
-  NodePub *current=root;
+  NodePost *current=root;
   
    if(current==NULL){
-    root = (NodePub*)malloc(sizeof(NodePub));
+    root = (NodePost*)malloc(sizeof(NodePost));
     root->post=*post;
     return;
   }

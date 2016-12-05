@@ -64,13 +64,13 @@ typedef struct CommentNode
 }NodeComment;
 
 
-int GuardarUsuarios (USU *, char *);
+int GuardarUsuarios (NodeUser *, char *);
 
 int GuardarPost (NodePost *, char *);
 
 int GuardarComents (NodePost *);
 
-int LoadUsuarios (USU**, char *);
+int LoadUsuarios (NodeUser**, char *);
 
 int LoadPubli (NodePost **,char *);
 
@@ -100,6 +100,6 @@ int AgregarPost (int, NodePost*,int);
 
 int BorrarPost (int, NodePost*,int);
 
-int BajaUsu (int, NodeUser*);
+int BajaUsu (int, NodeUser*, int);
 
 //void ListarPost (char**, NodePost*);

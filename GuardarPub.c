@@ -10,7 +10,7 @@ int GuardarPost (NodePost *primero, char *archivo)
     return 1;				//		No escribe al final, plancha y escribe de vuelta!
   for(aux=primero;aux!=NULL;)
   {
-    datos=&(aux->publicacion);
+    datos=&(aux->post);
     fwrite(datos,sizeof(POST),1,fd);
     primero=aux;
     aux=aux->nxt;

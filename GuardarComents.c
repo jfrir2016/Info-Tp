@@ -10,12 +10,12 @@ int GuardarComents (NodePost *primero)
   
   for(read=primero;read!=NULL;read=read->nxt)
   {
-    sprintf(Archivo,"%d.c",read->publicacion.id);// sprintf????
+    sprintf(Archivo,"%d.c",read->post.id);// sprintf????
     
     if((fd=fopen(Archivo,"w"))==NULL)
       return 1;
     
-    first=read->publicacion.root;
+    first=read->post.root;
     for(aux=first;aux!=NULL;)
     {
       datos=&(aux->comentario);

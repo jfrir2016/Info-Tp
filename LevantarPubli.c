@@ -4,7 +4,7 @@ int LoadPubli (NodePost **primero,char *archivo)
 {
   FILE *fd;
   NodePost *aux;
-  POST *datos
+  POST *datos;
   
   if((fd=fopen(archivo,"r"))==NULL)
     return 1;

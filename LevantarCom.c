@@ -8,9 +8,9 @@ int LoadComments (NodePost **primero)
   COMMT *datos;
   char Archivo[8];
   
-  for(read=primero;read!=NULL;read=read->nxt)
+  for(read=*primero;read!=NULL;read=read->nxt)
   {
-    sprintf(Archivo,"%d.c",read->publicacion.id);
+    sprintf(Archivo,"%d.c",read->post.id);
     
     if((fd=fopen(Archivo,"r"))==NULL)
       return 1;
@@ -27,7 +27,7 @@ int LoadComments (NodePost **primero)
       datos=&(aux->comentario);
       fread(datos,sizeof(COMMT),1,fd);
     }
-    read->publicacion.root=first;
+    read->post.root=first;
     aux->nxt=NULL;
     fclose(fd);
   }

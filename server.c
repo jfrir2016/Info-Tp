@@ -112,7 +112,7 @@ int main (void)
 	    // case 3: BorrarPost
 	}while(sel<3);
 	  if(sel=3)
-	    BajaUsu (id,URoot);
+	    BajaUsu (new_fd,URoot,id);
 	    // case 4: BajaUsu
     }	    // case 5: Exit
     //proceso padre
