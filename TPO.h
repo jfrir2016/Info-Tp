@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -86,7 +87,7 @@ void AgregarNodoPub(POST*, NodePost*);
 
 int BorrarNodoPub(int, NodePost);			//idem sig.
 
-int BorrarUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
+int BorrarNodoUsuario(int, NodeUser);		//retorna 0 si se borro, 1 si no se encontro
  
 int BorrarComentario(int, NodeComment);		//idem anterior
 
@@ -94,10 +95,12 @@ int Check (USU **,NodeUser *);
 
 POST* BuscoPost (char*, NodePost*);
 
-int Posteo (int, NodePost*);
+int Posteo (int, NodePost*, int, NodeUser*);
 
-int AgregarPost (int, NodePost*);
+int AgregarPost (int, NodePost*, int, NodeUser*);
 
-int BorrarPost (int, NodePost*)
+int BorrarPost (int, NodePost*, int, NodeUser*)
+
+int BajUsu (int, NodePost*, int, NodeUser*)
 
 //void ListarPost (char**, NodePost*);

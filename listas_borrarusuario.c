@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int BorrarUsuario(int id, NodeUser *root)
+int BorrarNodoUsuario(int id, NodeUser *root)
 {
   NodeUser anterior=*root;
   NodeUser current=*root;

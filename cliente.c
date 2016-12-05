@@ -132,6 +132,21 @@ int main(void)
 	}
 	break;
       case 4:
+	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	{
+	  perror("Recv: ");
+	  exit(1);
+	}
+	if(cant==1)
+	{
+	  printf("Se ha dado de baja\n");
+	  break;
+	}
+	printf("No se pudo dar de baja\n");
+	break;
+      case 5:
+	
+	  
 	
   
   
