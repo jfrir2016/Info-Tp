@@ -96,6 +96,7 @@ int main(void)
 	}
 	printf("%s\n\n%s\n",bufp.titulo,bufp.contenido);	//Muestro
 	break;
+	
       case 2:
 	printf("Ingrese Titulo de Publicacion\n");
 	scanf("%s",bufp.titulo);
@@ -107,6 +108,7 @@ int main(void)
 	  exit(1);
 	}
 	break;
+	
       case 3:
 	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
 	{
@@ -131,7 +133,17 @@ int main(void)
 	  perror("Send: ");
 	  exit(1);
 	}
+	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	{
+	  perror("Recv: ");
+	  exit(1);
+	}
+	if(cant==0)
+	  printf("No es una publicacion propia\n");
+	else
+	  print("Publicacion borrada con exito\n");
 	break;
+	
       case 4:
 	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
 	{
@@ -145,6 +157,7 @@ int main(void)
 	}
 	printf("No se pudo dar de baja\n");
 	break;
+	
       case 5:
 	print("Hasta Luego\n");
 	break;

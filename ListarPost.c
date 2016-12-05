@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int Posteo (int fd, NodePost *PRoot)
+int Posteo (int fd, NodePost *PRoot, int id)
 {
   int i,sel;
   char* buffer[BUFFER];

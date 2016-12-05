@@ -1,10 +1,10 @@
 #include "TPO.h"
 
-int BorrarPost (int fd, NodePost *PRoot)
+int BorrarPost (int fd, NodePost *PRoot, int id)
 {
   char* buffer[BUFFER];
   POST *find;
-  int sel;
+  int sel,i;
   
   buffer[BUFFER]=NULL; 						//pongo el ultimo puntero a NULL para saber que termino
    
@@ -36,12 +36,23 @@ int BorrarPost (int fd, NodePost *PRoot)
     exit(1);
   }
   find=BuscoPost(buffer[sel],PRoot);				//Busco publicacion a borrar
-  if(!BorrarNodoPub(find->id,PRoot))				//Borro
+  if(find->id!=id)
   {
-    printf("Error al agregar nodo\n");
+    i=0;
+    if((send(fd,&i,sizeof(int),0,))==-1)				//Envio cantidad
+    {
+      perror("Send: ");
+      exit(1);
+    }
     return 1;
   }
+  if(BorrarNodoPub(find->id,PRoot))				//Borro
+      return 1;
+  i=1;
+  if((send(fd,&i,sizeof(int),0,))==-1)				//Envio cantidad
+    {
+      perror("Send: ");
+      exit(1);
+    }
   return 0;
 }
-
-  

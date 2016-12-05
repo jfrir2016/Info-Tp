@@ -10,7 +10,7 @@ int main (void)
 	
   int sockfd, accion, new_fd, size;
   int id, sel, i;
-  int (*Menu[])(int,NodePost)={Posteo,AgregarPost,BorrarPost};
+  int (*Menu[])(int,NodePost,int)={Posteo,AgregarPost,BorrarPost};
   
   USU *buff;
 	
@@ -106,7 +106,7 @@ int main (void)
 	
 	  sel--;
 	  if(sel<3)
-	    Menu[sel](new_fd,PRoot);
+	    Menu[sel](new_fd,PRoot,id);
 	    // case 1: Posteo (Falta considerar comentar y demas)
 	    // case 2: AgregarPost
 	    // case 3: BorrarPost

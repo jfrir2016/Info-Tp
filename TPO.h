@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -95,11 +94,11 @@ int Check (USU **,NodeUser *);
 
 POST* BuscoPost (char*, NodePost*);
 
-int Posteo (int, NodePost*);
+int Posteo (int, NodePost*,int);
 
-int AgregarPost (int, NodePost*);
+int AgregarPost (int, NodePost*,int);
 
-int BorrarPost (int, NodePost*);
+int BorrarPost (int, NodePost*,int);
 
 int BajaUsu (int, NodeUser*);
 
