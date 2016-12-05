@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int BorrarPost (int fd, NodePost *PRoot, int id, NodeUser *URoot)
+int BorrarPost (int fd, NodePost *PRoot)
 {
   char* buffer[BUFFER];
   POST *find;

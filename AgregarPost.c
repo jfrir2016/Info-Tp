@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int AgregarPost (int fd, NodePost *PRoot, int id, NodeUser *URoot)
+int AgregarPost (int fd, NodePost *PRoot)
 {
   POST *Aux;
   

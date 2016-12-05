@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-POST* BuscoPost (char *name, NodePost *PRoot, int id, NodeUser *URoot)
+POST* BuscoPost (char *name, NodePost *PRoot)
 {
   POST* find;
   NodePost *Aux

@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int BajaUsu (int fd, NodePost *PRoot, int id, NodeUser *URoot)
+int BajaUsu (int id, NodeUser *URoot)
 {
   if(!(a=BorrarNodoUsuario(id,URoot)))
   {

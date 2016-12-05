@@ -95,12 +95,12 @@ int Check (USU **,NodeUser *);
 
 POST* BuscoPost (char*, NodePost*);
 
-int Posteo (int, NodePost*, int, NodeUser*);
+int Posteo (int, NodePost*);
 
-int AgregarPost (int, NodePost*, int, NodeUser*);
+int AgregarPost (int, NodePost*);
 
-int BorrarPost (int, NodePost*, int, NodeUser*);
+int BorrarPost (int, NodePost*);
 
-int BajaUsu (int, NodePost*, int, NodeUser*);
+int BajaUsu (int, NodeUser*);
 
 //void ListarPost (char**, NodePost*);

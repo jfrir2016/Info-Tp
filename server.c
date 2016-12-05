@@ -77,7 +77,7 @@ int main (void)
 	buff=(USU*)malloc(sizeof(USU));
 	do
 	{
-	  if((recv(sockfd,buff,sizeof(USU),0,))==-1)	//recive seleccio de Menu de Inicio
+	  if((recv(new_fd,buff,sizeof(USU),0,))==-1)	//recive seleccio de Menu de Inicio
 	  {
 	    perror("Recv: ");
 	    exit(1);
@@ -89,40 +89,32 @@ int main (void)
 	
 	  //BuscarNombreDeId
 	
-	  if((send(sockfd,&id,sizeof(int),0,))==-1)	//Envia respuesta
+	  if((send(new_fd,&id,sizeof(int),0,))==-1)	//Envia respuesta
 	  {
 	    perror("Send: ");
 	    exit(1);
 	  }
 	}while(id<0); //Bucle
 	
-	if((recv(sockfd,&sel,sizeof(int),0,))==-1)			//Recivo id o -1 en caso de error
+	if((recv(new_fd,&sel,sizeof(int),0,))==-1)			//Recivo id o -1 en caso de error
 	{
 	  perror("Recv: ");
 	  exit(1);
 	}
 	
 	sel--;
-	Menu[a](sockfd,PRoot,id,URoot);
-	
+	if(sel<4)
+	  Menu[sel](new_fd,PRoot);
 	  // case 1: Posteo (Falta considerar comentar y demas)
 	  // case 2: AgregarPost
 	  // case 3: BorrarPost
+	if(sel=4)
+	  BajaUsu (id,URoot);
 	  // case 4: BajaUsu
-	    
-	    
-	    
-	    
-	      
-	    
-	
-	
-	
-	
-      
-    }			//proceso padre
-    close(new_fd)
-    
+    }	  // case 5: Exit
+    //proceso padre
+    close(new_fd);
   }
+  //salir
   return 0;
 }
