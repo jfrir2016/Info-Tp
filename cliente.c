@@ -41,12 +41,12 @@ int main(void)
     a--;
     Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
 
-    if((send(sockfd,buff,sizeof(buff),0,))==-1) //Envio datos de Usuario
+    if((send(sockfd,buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {
       perror("Send: ");
       exit(1);
     }
-    if((recv(sockfd,&id,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
+    if((recv(sockfd,&id,sizeof(int),0))==-1)	//Recivo id o -1 en caso de error
     {
       perror("Recv: ");
       exit(1);
@@ -58,7 +58,7 @@ int main(void)
     printf("\t\tMenu Principal\n1)Ver Publicaciones\n2)Crear Publicacion\n3)Borrar Publicacion\n4)Darse de Baja\n5)Salir");
     scanf("%d",&a);
   
-    if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+    if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
     {
       perror("Send: ");
       exit(1);
@@ -67,7 +67,7 @@ int main(void)
     switch(a)
     {
       case 1:
-	if((recv(sockfd,&cant,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
+	if((recv(sockfd,&cant,sizeof(int),0))==-1)	//Recivo id o -1 en caso de error
 	{
 	  perror("Recv: ");
 	  exit(1);
@@ -79,7 +79,7 @@ int main(void)
 	}
 	for(i=1,i<=cant,i++)
 	{
-	  if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
+	  if((recv(sockfd,buffer,BUFFER,0))==-1)	//Recivo id o -1 en caso de error
 	  {
 	    perror("Recv: ");
 	    exit(1);
@@ -87,12 +87,12 @@ int main(void)
 	  printf("%d)%s\n",i,buffer);
 	}
 	scanf("%d",&a);
-	if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+	if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
 	{
 	  perror("Send: ");
 	  exit(1);
 	}
-	if((recv(sockfd,&bufp,sizeof(post),0,))==-1)	//Recivo Publicacion
+	if((recv(sockfd,&bufp,sizeof(post),0))==-1)	//Recivo Publicacion
 	{
 	  perror("Recv: ");
 	  exit(1);
@@ -105,7 +105,7 @@ int main(void)
 	scanf("%s",bufp.titulo);
 	printf("Ingrese Cuerpo de Publicacion\n");
 	scanf("%s",bufp.contenido);
-	if((send(sockfd,&bufp,sizeof(post),0,))==-1)	//Envio seleccion
+	if((send(sockfd,&bufp,sizeof(post),0))==-1)	//Envio seleccion
 	{
 	  perror("Send: ");
 	  exit(1);
@@ -113,7 +113,7 @@ int main(void)
 	break;
 	
       case 3:
-	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
 	  perror("Recv: ");
 	  exit(1);
@@ -123,7 +123,7 @@ int main(void)
 	
 	for(i=1,i<=cant,i++)
 	{
-	  if((recv(sockfd,buffer,BUFFER,0,))==-1)	
+	  if((recv(sockfd,buffer,BUFFER,0))==-1)	
 	  {
 	    perror("Recv: ");
 	    exit(1);
@@ -131,12 +131,12 @@ int main(void)
 	  printf("%d)%s\n",i,buffer);
 	}
 	scanf("%d",&a);
-	if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+	if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
 	{
 	  perror("Send: ");
 	  exit(1);
 	}
-	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
 	  perror("Recv: ");
 	  exit(1);

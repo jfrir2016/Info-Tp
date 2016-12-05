@@ -16,21 +16,21 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
   }
   buffer[i]=NULL;
   
-  if((send(fd,&i,sizeof(int),0,))==-1)				//Envio cantidad
+  if((send(fd,&i,sizeof(int),0))==-1)				//Envio cantidad
     {
       perror("Send: ");
       exit(1);
     }
   for(i=0; buffer[i]!=NULL; i++)
   {
-    if((send(fd,buffer[i],strlen(buffer[i])+1,0,))==-1)		//Envio titulo post a post
+    if((send(fd,buffer[i],strlen(buffer[i])+1,0))==-1)		//Envio titulo post a post
     {
       perror("Send: ");
       exit(1);
     }
   }
   
-  if((recv(sockfd,&sel,sizeof(int),0,))==-1)			//Recivo seleccion
+  if((recv(sockfd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
   {
     perror("Recv: ");
     exit(1);
@@ -39,7 +39,7 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
   if(find->id!=id)
   {
     i=0;
-    if((send(fd,&i,sizeof(int),0,))==-1)				//Envio cantidad
+    if((send(fd,&i,sizeof(int),0))==-1)				//Envio cantidad
     {
       perror("Send: ");
       exit(1);
@@ -49,7 +49,7 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
   if(BorrarNodoPub(find->id,PRoot))				//Borro
       return 1;
   i=1;
-  if((send(fd,&i,sizeof(int),0,))==-1)				//Envio cantidad
+  if((send(fd,&i,sizeof(int),0))==-1)				//Envio cantidad
     {
       perror("Send: ");
       exit(1);

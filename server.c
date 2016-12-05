@@ -77,7 +77,7 @@ int main (void)
 	buff=(USU*)malloc(sizeof(USU));
 	do
 	{
-	  if((recv(new_fd,buff,sizeof(USU),0,))==-1)	//recive seleccio de Menu de Inicio
+	  if((recv(new_fd,buff,sizeof(USU),0))==-1)	//recive seleccio de Menu de Inicio
 	  {
 	    perror("Recv: ");
 	    exit(1);
@@ -89,7 +89,7 @@ int main (void)
 	
 	  //BuscarNombreDeId
 	
-	  if((send(new_fd,&id,sizeof(int),0,))==-1)	//Envia respuesta
+	  if((send(new_fd,&id,sizeof(int),0))==-1)	//Envia respuesta
 	  {
 	    perror("Send: ");
 	    exit(1);
@@ -98,7 +98,7 @@ int main (void)
 	
 	do
 	{
-	  if((recv(new_fd,&sel,sizeof(int),0,))==-1)	//Recivo seleccion
+	  if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
 	  {
 	    perror("Recv: ");
 	    exit(1);

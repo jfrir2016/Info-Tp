@@ -18,21 +18,21 @@ int Posteo (int fd, NodePost *PRoot, int id)
   }
   buffer[i]=NULL;
   
-  if((send(fd,&i,sizeof(int),0,))==-1)		//Envio cantidad
+  if((send(fd,&i,sizeof(int),0))==-1)		//Envio cantidad
     {
       perror("Send: ");
       exit(1);
     }
   for(i=0; buffer[i]!=NULL; i++)
   {
-    if((send(fd,buffer[i],strlen(buffer[i])+1,0,))==-1)	//Envio titulo post a post
+    if((send(fd,buffer[i],strlen(buffer[i])+1,0))==-1)	//Envio titulo post a post
     {
       perror("Send: ");
       exit(1);
     }
   }
   
-  if((recv(sockfd,&sel,sizeof(int),0,))==-1)			//Recivo seleccion
+  if((recv(sockfd,&sel,sizeof(int),0))==-1)			//Recivo seleccion
   {
     perror("Recv: ");
     exit(1);
@@ -40,7 +40,7 @@ int Posteo (int fd, NodePost *PRoot, int id)
   
   sel--;
   find=BuscoPub(buffer[sel],PRoot);
-  if((send(sockfd,find,sizeof(POST),0,))==-1)			//Envio publicacion Entera
+  if((send(sockfd,find,sizeof(POST),0))==-1)			//Envio publicacion Entera
   {
     perror("Send: ");
     exit(1);
