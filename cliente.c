@@ -107,6 +107,31 @@ int main(void)
 	}
 	break;
       case 3:
+	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	{
+	  perror("Recv: ");
+	  exit(1);
+	}
+	if(cant==0)
+	  printf("No hay Publicaciones\n");
+	
+	for(i=1,i<=cant,i++)
+	{
+	  if((recv(sockfd,buffer,BUFFER,0,))==-1)	
+	  {
+	    perror("Recv: ");
+	    exit(1);
+	  }
+	  printf("%d)%s\n",i,buffer);
+	}
+	scanf("%d",&a);
+	if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+	{
+	  perror("Send: ");
+	  exit(1);
+	}
+	break;
+      case 4:
 	
   
   

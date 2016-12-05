@@ -1,6 +1,6 @@
 #include "TPO.h"
 
-int BorrarPub(int id, NodePost *root)
+int BorrarNodoPub(int id, NodePost *root)
 {
   NodePost anterior=*root;
   NodePost current=*root;

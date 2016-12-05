@@ -106,7 +106,8 @@ int main (void)
 	Menu[a](sockfd,PRoot);
 	
 	  // case 1: Posteo (Falta considerar comentar y demas)
-	  // case 2: AgregarPost 
+	  // case 2: AgregarPost
+	  // case 3: BorrarPost
 	    
 	    
 	    
