@@ -73,7 +73,10 @@ int main(void)
 	  exit(1);
 	}
 	if(cant==0)
+	{
 	  printf("No hay Publicaciones\n");
+	  break;
+	}
 	for(i=1,i<=cant,i++)
 	{
 	  if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error

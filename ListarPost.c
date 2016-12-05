@@ -6,6 +6,7 @@ int Posteo (int fd, NodePost *PRoot, int id)
   char* buffer[BUFFER];
   NodePost *Aux=PRoot;
   POST *find;
+  NodeComment *aux;
   
   buffer[BUFFER]=NULL; 				//pongo el ultimo puntero a NULL para saber que termino
    
@@ -39,13 +40,19 @@ int Posteo (int fd, NodePost *PRoot, int id)
   
   sel--;
   find=BuscoPub(buffer[sel],PRoot);
-  if(find==NULL)
-    return 1;
   if((send(sockfd,find,sizeof(POST),0,))==-1)			//Envio publicacion Entera
   {
     perror("Send: ");
     exit(1);
   }
-  
+  /*
+  for(aux=find->root;aux!=NULL;aux=aux->nxt)
+  {
+    if((send(fd,aux->contenido,strlen(aux->contenido)+1,0,))==-1)	//Envio comentarios
+    {
+      perror("Send: ");
+      exit(1);
+    }
+  }*/ 
   return 0;
 }
