@@ -10,16 +10,12 @@ int main (void)
 	
   int sockfd, accion, new_fd, size;
   int id, sel, i;
-  char* buffer[BUFFER];
-  
-  buffer[BUFFER]=NULL; //pongo el ultimo puntero a NULL para saber que termino
+  int (*Menu[])(int,NodePost,int)={Posteo,...,...,...,...};
   
   USU *buff;
-  POST *find;
 	
   struct sockaddr_in server_addr;
   struct sockaddr_in client_addr;
-  
   
   // Creo el socket y guardo su descriptor; exit si hubo error
   if((sockfd= socket(AF_INET, SOCK_STREAM, 0))==-1)
@@ -76,7 +72,7 @@ int main (void)
     
     if(!fork())
     {
-	//proceso hijo
+	//Proceso hijo
 	close(sockfd);
 	buff=(USU*)malloc(sizeof(USU));
 	do
@@ -100,40 +96,17 @@ int main (void)
 	  }
 	}while(id<0); //Bucle
 	
-	if((recv(sockfd,&sel,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
+	if((recv(sockfd,&sel,sizeof(int),0,))==-1)			//Recivo id o -1 en caso de error
 	{
 	  perror("Recv: ");
 	  exit(1);
 	}
-	switch(sel)
-	  case 1:
-	    ListarPost(buffer,PRoot);
-	    for(i=0;strcmp(*(buffer[i]),"0")!=0;i++)
-	    {
-	      if((send(sockfd,buffer[i],strlen(buffer[i]),0,))==-1)	//Envio post a post
-	      {
-		perror("Send: ");
-		exit(1);
-	      }
-	    }
-	    if((send(sockfd,buffer[i],strlen(buffer[i]),0,))==-1)	//Envio 0 para final
-	      {
-		perror("Send: ");
-		exit(1);
-	      }
-	      
-	    if((recv(sockfd,&sel,sizeof(int),0,))==-1)	//Recivo seleccion
-	    {
-	      perror("Recv: ");
-	      exit(1);
-	    }
-	    find=BuscoPub(buffer[sel],PRoot);
-	    if((send(sockfd,find,sizeof(POST),0,))==-1)	//Envio publicacion Entera
-	      {
-		perror("Send: ");
-		exit(1);
-	      }					//Falta considerar comentar y demas
-	  case 2:
+	
+	sel--;
+	Menu[a](sockfd,PRoot);
+	
+	  // case 1: Posteo (Falta considerar comentar y demas)
+	  // case 2:
 	    
 	    
 	    

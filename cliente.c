@@ -7,7 +7,7 @@ int main(void)
   
   char buffer[BUFFER];
   int sockfd, pedido, accion, msglen;
-  int a, id, i=0;
+  int a, id, cant, i=0;
   
   usu buff;
   post bufp;
@@ -39,7 +39,7 @@ int main(void)
     printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
     scanf("%d",a);
     a--;
-    menu[a](&buff);				//Llamo a funcion Ingresar o Registrarse
+    Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
 
     if((send(sockfd,buff,sizeof(buff),0,))==-1) //Envio datos de Usuario
     {
@@ -65,24 +65,23 @@ int main(void)
   switch(a)
   {
     case 1:
-      if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
-	{
-	  perror("Recv: ");
-	  exit(1);
-	}
-      while(strcmp(buffer,"0"))
+      if((recv(sockfd,&cant,sizeof(int),0,))==-1)	//Recivo id o -1 en caso de error
       {
-	i++;
-	printf("%d)%s\n",i,buffer);
+	perror("Recv: ");
+	exit(1);
+      }
+      if(cant==0)
+	printf("No hay Publicaciones\n");
+	
+      for(i=1,i<=cant,i++)
+      {
 	if((recv(sockfd,buffer,BUFFER,0,))==-1)	//Recivo id o -1 en caso de error
 	{
 	  perror("Recv: ");
 	  exit(1);
 	}
+	printf("%d)%s\n",i,buffer);
       }
-      if(!strcmp(buffer,"0"))
-	printf("No hay Publicaciones\n");
-      
       scanf("%d",&a);
       if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
       {
