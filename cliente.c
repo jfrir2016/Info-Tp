@@ -53,17 +53,17 @@ int main(void)
     }
   }while(id<0);
   
-  printf("\t\tMenu Principal\n1)Ver Publicaciones\n2)Crear Publicacion\n3)Borrar Publicacion\n4)Darse de Baja\n5)Salir");
-  scanf("%d",&a);
-  
-  if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
-  {
-    perror("Send: ");
-    exit(1);
-  }
-  
   do
   {
+    printf("\t\tMenu Principal\n1)Ver Publicaciones\n2)Crear Publicacion\n3)Borrar Publicacion\n4)Darse de Baja\n5)Salir");
+    scanf("%d",&a);
+  
+    if((send(sockfd,&a,sizeof(int),0,))==-1)	//Envio seleccion
+    {
+      perror("Send: ");
+      exit(1);
+    }
+  
     switch(a)
     {
       case 1:

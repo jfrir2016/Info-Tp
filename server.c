@@ -10,7 +10,7 @@ int main (void)
 	
   int sockfd, accion, new_fd, size;
   int id, sel, i;
-  int (*Menu[])(int,NodePost,int,NodeUser)={Posteo,AgregarPost,BorrarPost,...,...};
+  int (*Menu[])(int,NodePost)={Posteo,AgregarPost,BorrarPost};
   
   USU *buff;
 	
@@ -96,22 +96,25 @@ int main (void)
 	  }
 	}while(id<0); //Bucle
 	
-	if((recv(new_fd,&sel,sizeof(int),0,))==-1)			//Recivo id o -1 en caso de error
+	do
 	{
-	  perror("Recv: ");
-	  exit(1);
-	}
+	  if((recv(new_fd,&sel,sizeof(int),0,))==-1)	//Recivo seleccion
+	  {
+	    perror("Recv: ");
+	    exit(1);
+	  }
 	
-	sel--;
-	if(sel<4)
-	  Menu[sel](new_fd,PRoot);
-	  // case 1: Posteo (Falta considerar comentar y demas)
-	  // case 2: AgregarPost
-	  // case 3: BorrarPost
-	if(sel=4)
-	  BajaUsu (id,URoot);
-	  // case 4: BajaUsu
-    }	  // case 5: Exit
+	  sel--;
+	  if(sel<3)
+	    Menu[sel](new_fd,PRoot);
+	    // case 1: Posteo (Falta considerar comentar y demas)
+	    // case 2: AgregarPost
+	    // case 3: BorrarPost
+	}while(sel<3);
+	  if(sel=3)
+	    BajaUsu (id,URoot);
+	    // case 4: BajaUsu
+    }	    // case 5: Exit
     //proceso padre
     close(new_fd);
   }
