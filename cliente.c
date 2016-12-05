@@ -94,11 +94,20 @@ int main(void)
 	  exit(1);
       }
       printf("%s\n\n%s\n",bufp.titulo,bufp.contenido);	//Muestro
-    case 2:
-      
-  
-  
-  
+      break;
+      case 2:
+	printf("Ingrese Titulo de Publicacion\n");
+	scanf("%s",bufp.titulo);
+	printf("Ingrese Cuerpo de Publicacion\n");
+	scanf("%s",bufp.contenido);
+	if((send(sockfd,&bufp,sizeof(post),0,))==-1)	//Envio seleccion
+	{
+	  perror("Send: ");
+	  exit(1);
+	}
+	break;
+      case 3:
+	
   
   
   
