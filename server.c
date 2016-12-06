@@ -51,11 +51,11 @@ int main (void)
     exit(1);
   }
   
-  if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
+  /*if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
   {
     perror("signal");
     exit(1);
-  }
+  }*/
     
   while(1)
   {
