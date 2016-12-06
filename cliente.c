@@ -13,9 +13,8 @@ int main(void)
   post bufp;
   int (*Menu1[])(usu*)={Ingresar,Registro};
 	
-  struct  sockaddr_in server_addr;
-  struct hostent *he;
-  
+  struct sockaddr_in server_addr;
+  struct sockaddr_in my_addr;
    
   if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1)
   {
@@ -25,8 +24,13 @@ int main(void)
   
   server_addr.sin_family= AF_INET;
   server_addr.sin_port= htons(PORT);
-  server_addr.sin_addr.s_addr=*((struct in_addr *)he->h_addr);
+  server_addr.sin_addr.s_addr=inet_addr(IP);
   memset(&(server_addr.sin_zero),'\0',8);
+  
+  my_addr.sin_family= AF_INET;
+  my_addr.sin_port= 0;
+  my_addr.sin_addr.s_addr=INADDR_ANY;
+  memset(&(my_addr.sin_zero),'\0',8);
   
   if((connect(sockfd, (struct sockaddr*)&server_addr, sizeof(struct sockaddr_in)))==-1)
   {
@@ -37,11 +41,11 @@ int main(void)
   do
   {
     printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
-    scanf("%d",a);
+    scanf("%d",&a);
     a--;
     Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
 
-    if((send(sockfd,buff,sizeof(buff),0))==-1) //Envio datos de Usuario
+    if((send(sockfd,&buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {
       perror("Send: ");
       exit(1);
@@ -77,7 +81,7 @@ int main(void)
 	  printf("No hay Publicaciones\n");
 	  break;
 	}
-	for(i=1,i<=cant,i++)
+	for(i=1;i<=cant;i++)
 	{
 	  if((recv(sockfd,buffer,BUFFER,0))==-1)	//Recivo id o -1 en caso de error
 	  {
@@ -121,7 +125,7 @@ int main(void)
 	if(cant==0)
 	  printf("No hay Publicaciones\n");
 	
-	for(i=1,i<=cant,i++)
+	for(i=1;i<=cant;i++)
 	{
 	  if((recv(sockfd,buffer,BUFFER,0))==-1)	
 	  {
@@ -148,7 +152,7 @@ int main(void)
 	break;
 	
       case 4:
-	if((recv(sockfd,&cant,sizeof(int),0,))==-1)
+	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
 	  perror("Recv: ");
 	  exit(1);

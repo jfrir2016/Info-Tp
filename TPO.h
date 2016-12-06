@@ -17,6 +17,7 @@
 
 #define PORT 43210
 #define BUFFER 255
+#define MEMSET 10
 
 typedef struct User
 {

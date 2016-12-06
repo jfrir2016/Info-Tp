@@ -13,6 +13,8 @@
 #include <netdb.h>
 
 #define BUFFER 100
+#define PORT 43210
+#define IP "10.12.110.57"
 
 typedef struct User
 {

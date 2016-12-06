@@ -10,7 +10,7 @@ int main (void)
 	
   int sockfd, accion, new_fd, size;
   int id, sel, i;
-  int (*Menu[])(int,NodePost,int)={Posteo,AgregarPost,BorrarPost};
+  int (*Menu[])(int,NodePost*,int)={Posteo,AgregarPost,BorrarPost};
   
   USU *buff;
 	
@@ -32,7 +32,7 @@ int main (void)
   
 	
 	
-  if((bind(sockfd,(struct sock_addr *)&server_addr, sizeof(struct sock_addr)))==-1)
+  if((bind(sockfd,(struct sockaddr *)&server_addr, sizeof(struct sockaddr)))==-1)
   {
     perror("Bind: ");
     exit(1);
@@ -62,7 +62,7 @@ int main (void)
   
     size = sizeof(struct sockaddr_in);
       
-    if((new_fd=accept(sockfd,&client_addr,&size))==-1)
+    if((new_fd=accept(sockfd,(struct sockaddr *)&client_addr,&size))==-1)
     {
 	perror("Accept");
 	exit(1);
