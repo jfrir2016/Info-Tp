@@ -8,6 +8,8 @@ int LoadComments (NodePost **primero)
   COMMT *datos;
   char Archivo[8];
   
+  if(*primero==NULL)
+    return 0;
   for(read=*primero;read!=NULL;read=read->nxt)
   {
     sprintf(Archivo,"%d.c",read->post.id);

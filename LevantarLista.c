@@ -9,9 +9,14 @@ int LoadUsuarios (NodeUser **primero,char *archivo)
   if((fd=fopen(archivo,"r"))==NULL)
     return 1;
   aux=(NodeUser*)malloc(sizeof(NodeUser));
-  *primero=aux;
   datos=&(aux->user);
   fread(datos,sizeof(USU),1,fd);
+  if(feof(fd))
+  {
+    free(aux);
+    return 0;
+  }
+  *primero=aux;
   while(!feof(fd))
   {
     aux->nxt=(NodeUser*)malloc(sizeof(NodeUser));
