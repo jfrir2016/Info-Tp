@@ -6,10 +6,10 @@ int main (void)
 {
   NodeUser *URoot=NULL;
   NodePost *PRoot=NULL;
-  NodeComment *CRoot=NULL;
+  //NodeComment *CRoot=NULL;
 	
-  int sockfd, accion, new_fd, size;
-  int id, sel, i;
+  int sockfd, new_fd, size;
+  int id, sel;
   int (*Menu[])(int,NodePost*,int)={Posteo,AgregarPost,BorrarPost};
   
   USU *buff;
@@ -62,7 +62,7 @@ int main (void)
   
     size = sizeof(struct sockaddr_in);
       
-    if((new_fd=accept(sockfd,(struct sockaddr *)&client_addr,&size))==-1)
+    if((new_fd=accept(sockfd,(struct sockaddr *)&client_addr,(socklen_t*)&size))==-1)
     {
 	perror("Accept");
 	exit(1);
@@ -111,7 +111,7 @@ int main (void)
 	    // case 2: AgregarPost
 	    // case 3: BorrarPost
 	}while(sel<3);
-	  if(sel=3)
+	  if(sel==3)
 	    BajaUsu (new_fd,URoot,id);
 	    // case 4: BajaUsu
     }	    // case 5: Exit

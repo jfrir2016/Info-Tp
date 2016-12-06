@@ -2,19 +2,25 @@
 
 int BorrarComentario(int id, NodeComment *root)
 {
-  NodeComment anterior=*root;
-  NodeComment current=*root;
-  while(current->comentario.id!=id){
+  NodeComment *anterior=root;
+  NodeComment *current=root;
+  
+  while(current->comentario.id!=id)
+  {
     anterior=current;
-    if(current->next==NULL){
+    if(current->nxt==NULL)
       return 1;
-    }
     current=current->nxt;
-  }if(current!=*root){
-    anterior->nxt=current->next;
+  }
+  if(current!=root)
+  {
+    anterior->nxt=current->nxt;
     free(current);
-  }else{
-    *root=root->next;
+  }
+  else
+  {
+    root=root->nxt;
     free(current);
-  }return 0;
+  }
+  return 0;
 }

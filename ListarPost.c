@@ -6,7 +6,7 @@ int Posteo (int fd, NodePost *PRoot, int id)
   char* buffer[BUFFER];
   NodePost *Aux=PRoot;
   POST *find;
-  NodeComment *aux;
+  //NodeComment *aux;
   
   buffer[BUFFER]=NULL; 				//pongo el ultimo puntero a NULL para saber que termino
    

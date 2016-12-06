@@ -6,7 +6,7 @@ int main(void)
 {
   
   char buffer[BUFFER];
-  int sockfd, pedido, accion, msglen;
+  int sockfd;
   int a, id, cant, i=0;
   
   usu buff;
@@ -148,7 +148,7 @@ int main(void)
 	if(cant==0)
 	  printf("No es una publicacion propia\n");
 	else
-	  print("Publicacion borrada con exito\n");
+	  printf("Publicacion borrada con exito\n");
 	break;
 	
       case 4:
@@ -166,7 +166,7 @@ int main(void)
 	break;
 	
       case 5:
-	print("Hasta Luego\n");
+	printf("Hasta Luego\n");
 	break;
     }
   }while(a<4);
