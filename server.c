@@ -20,7 +20,7 @@ int main (void)
   // Creo el socket y guardo su descriptor; exit si hubo error
   if((sockfd= socket(AF_INET, SOCK_STREAM, 0))==-1)
   {
-      perror("Socket: ");
+      perror("Socket");
       exit(1);
   }
   
@@ -34,7 +34,7 @@ int main (void)
 	
   if((bind(sockfd,(struct sockaddr *)&server_addr, sizeof(struct sockaddr)))==-1)
   {
-    perror("Bind: ");
+    perror("Bind");
     exit(1);
   }
   
@@ -47,15 +47,15 @@ int main (void)
     
   if(listen(sockfd,MEMSET)==-1)
   {
-    perror("Listen: ");
+    perror("Listen");
     exit(1);
   }
   
-  /*if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
+  if(signal(SIGCHLD, sigchld_handler) == SIG_ERR)
   {
     perror("signal");
     exit(1);
-  }*/
+  }
     
   while(1)
   {
@@ -69,6 +69,7 @@ int main (void)
     }
     
     printf("Se recibio conexion de: %s", inet_ntoa(client_addr.sin_addr));
+    fflush(stdout);
     
     if(!fork())
     {
@@ -79,7 +80,7 @@ int main (void)
 	{
 	  if((recv(new_fd,buff,sizeof(USU),0))==-1)	//recive seleccio de Menu de Inicio
 	  {
-	    perror("Recv: ");
+	    perror("Recv");
 	    exit(1);
 	  }
 	  if(buff->id==1)
@@ -91,7 +92,7 @@ int main (void)
 	
 	  if((send(new_fd,&id,sizeof(int),0))==-1)	//Envia respuesta
 	  {
-	    perror("Send: ");
+	    perror("Send");
 	    exit(1);
 	  }
 	}while(id<0); //Bucle
@@ -100,7 +101,7 @@ int main (void)
 	{
 	  if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
 	  {
-	    perror("Recv: ");
+	    perror("Recv");
 	    exit(1);
 	  }
 	

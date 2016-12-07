@@ -18,7 +18,7 @@ int main(void)
    
   if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1)
   {
-    perror("Socket: ");
+    perror("Socket");
     exit(1);
   }
   
@@ -47,12 +47,12 @@ int main(void)
 
     if((send(sockfd,&buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {
-      perror("Send: ");
+      perror("Send");
       exit(1);
     }
     if((recv(sockfd,&id,sizeof(int),0))==-1)	//Recivo id o -1 en caso de error
     {
-      perror("Recv: ");
+      perror("Recv");
       exit(1);
     }
   }while(id<0);
@@ -64,7 +64,7 @@ int main(void)
   
     if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
     {
-      perror("Send: ");
+      perror("Send");
       exit(1);
     }
   
@@ -73,7 +73,7 @@ int main(void)
       case 1:
 	if((recv(sockfd,&cant,sizeof(int),0))==-1)	//Recivo id o -1 en caso de error
 	{
-	  perror("Recv: ");
+	  perror("Recv");
 	  exit(1);
 	}
 	if(cant==0)
@@ -85,7 +85,7 @@ int main(void)
 	{
 	  if((recv(sockfd,buffer,BUFFER,0))==-1)	//Recivo id o -1 en caso de error
 	  {
-	    perror("Recv: ");
+	    perror("Recv");
 	    exit(1);
 	  }
 	  printf("%d)%s\n",i,buffer);
@@ -93,7 +93,7 @@ int main(void)
 	scanf("%d",&a);
 	if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
 	{
-	  perror("Send: ");
+	  perror("Send");
 	  exit(1);
 	}
 	if((recv(sockfd,&bufp,sizeof(post),0))==-1)	//Recivo Publicacion
@@ -111,7 +111,7 @@ int main(void)
 	scanf("%s",bufp.contenido);
 	if((send(sockfd,&bufp,sizeof(post),0))==-1)	//Envio seleccion
 	{
-	  perror("Send: ");
+	  perror("Send");
 	  exit(1);
 	}
 	break;
@@ -119,7 +119,7 @@ int main(void)
       case 3:
 	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
-	  perror("Recv: ");
+	  perror("Recv");
 	  exit(1);
 	}
 	if(cant==0)
@@ -129,7 +129,7 @@ int main(void)
 	{
 	  if((recv(sockfd,buffer,BUFFER,0))==-1)	
 	  {
-	    perror("Recv: ");
+	    perror("Recv");
 	    exit(1);
 	  }
 	  printf("%d)%s\n",i,buffer);
@@ -137,12 +137,12 @@ int main(void)
 	scanf("%d",&a);
 	if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
 	{
-	  perror("Send: ");
+	  perror("Send");
 	  exit(1);
 	}
 	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
-	  perror("Recv: ");
+	  perror("Recv");
 	  exit(1);
 	}
 	if(cant==0)
@@ -154,7 +154,7 @@ int main(void)
       case 4:
 	if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	{
-	  perror("Recv: ");
+	  perror("Recv");
 	  exit(1);
 	}
 	if(cant==1)
