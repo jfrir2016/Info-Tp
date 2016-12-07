@@ -15,5 +15,6 @@ void AgregarNodoPub(POST *post, NodePost *root)
   }
   current->nxt=(NodePost*)malloc(sizeof(NodePost));
   current->nxt->post=*post;
+  current->nxt->nxt=NULL;
   return;
 }
