@@ -57,7 +57,10 @@ int main(void)
     }
   }while(id<0);
   
-  do
+	if(id==1)
+		printf("Ingresó como administrador\n");
+  
+	do
   {
     printf("\t\tMenu Principal\n1)Ver Publicaciones\n2)Crear Publicacion\n3)Borrar Publicacion\n4)Darse de Baja\n5)Salir");
     scanf("%d",&a);

@@ -37,7 +37,7 @@ int BorrarPost (int fd, NodePost *PRoot, int id)
     exit(1);
   }
   find=BuscoPost(buffer[sel],PRoot);				//Busco publicacion a borrar
-  if(find->id!=id)
+  if(find->id!=id && id!=1)
   {
     i=0;
     if((send(fd,&i,sizeof(int),0))==-1)				//Envio cantidad
