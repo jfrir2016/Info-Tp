@@ -11,6 +11,8 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <netdb.h>
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
 #define FUSU "Usuarios"
 #define FPUB "Posts"

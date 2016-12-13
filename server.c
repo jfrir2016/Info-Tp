@@ -73,52 +73,57 @@ int main (void)
     
     if(!fork())
     {
-	//Proceso hijo
-	close(sockfd);
-	buff=(USU*)malloc(sizeof(USU));
-	do
-	{
-	  if((recv(new_fd,buff,sizeof(USU),0))==-1)	//recive seleccio de Menu de Inicio
-	  {
-	    perror("Recv");
-	    exit(1);
-	  }
-	  if(buff->id==1)
-	    id=Check(&buff,URoot);			//Logueo
-	  else
-	    id=AgregarNodoUsuario(buff,URoot);		//Registro
+			//Proceso hijo
+			close(sockfd);
+			buff=(USU*)malloc(sizeof(USU));
+			do
+			{
+				if((recv(new_fd,buff,sizeof(USU),0))==-1)	//recive seleccio de Menu de Inicio
+				{
+					perror("Recv");
+					exit(1);
+				}
+				if(buff->id==1)
+					id=Check(&buff,URoot);			//Logueo
+				else if(buff->id==2)
+					id=AgregarNodoUsuario(buff,URoot);		//Registro
+				else
+					id=0;
+				
+				if((send(new_fd,&id,sizeof(int),0))==-1)	//Envia respuesta
+				{
+					perror("Send");
+					exit(1);
+				}
+			}while(id<0); //Bucle
 	
-	  //BuscarNombreDeId
+			if(id!=0)
+			{
+				do
+				{
+					if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
+					{
+						perror("Recv");
+						exit(1);
+					}
 	
-	  if((send(new_fd,&id,sizeof(int),0))==-1)	//Envia respuesta
-	  {
-	    perror("Send");
-	    exit(1);
-	  }
-	}while(id<0); //Bucle
-	
-	do
-	{
-	  if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
-	  {
-	    perror("Recv");
-	    exit(1);
-	  }
-	
-	  sel--;
-	  if(sel<3)
-	    Menu[sel](new_fd,PRoot,id);
-	    // case 1: Posteo (Falta considerar comentar y demas)
-	    // case 2: AgregarPost
-	    // case 3: BorrarPost
-	}while(sel<3);
-	  if(sel==3)
+					sel--;
+					if(sel<3)
+						Menu[sel](new_fd,PRoot,id);
+				// case 1: Posteo (Falta considerar comentar y demas)
+				// case 2: AgregarPost
+				// case 3: BorrarPost
+		}while(sel<3);
+		if(sel==3)
 	    BajaUsu (new_fd,URoot,id);
 	    // case 4: BajaUsu
-    }	    // case 5: Exit
-    //proceso padre
+    	// case 5: Exit
+	}
+	return 0;
+	}
+			//proceso padre
     close(new_fd);
-  }
+	}
   //salir
   return 0;
 }

@@ -43,8 +43,11 @@ int main(void)
     printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
     scanf("%d",&a);
     a--;
-    Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
-
+    if(a!=0)
+			Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
+		else
+			buff->id=0;
+		
     if((send(sockfd,&buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {
       perror("Send");
@@ -57,6 +60,9 @@ int main(void)
     }
   }while(id<0);
   
+	if(id==0)
+		return 0;
+	
 	if(id==1)
 		printf("Ingresó como administrador\n");
   
