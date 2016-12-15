@@ -39,10 +39,13 @@ int main(void)
   }
   
   do
-  {
+  {/*
     printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
     scanf("%d",&a);
     a--;
+    */
+    a=interfaz1(); //ARREGLAR (interfaz1 retorna cualquier cosa)
+    
     if(a!=0)
 			Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
 		else
