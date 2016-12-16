@@ -44,7 +44,7 @@ int main(void)
     scanf("%d",&a);
     a--;
     */
-    a=interfaz1(); //ARREGLAR (interfaz1 retorna cualquier cosa)
+    a=interfaz1(); //ARREGLAR (interfaz1 retorna cualquier cosa) y falto lo de salir
     
     if(a!=0)
 			Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
