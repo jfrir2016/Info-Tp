@@ -18,7 +18,7 @@ void menuInicio (IplImage* imagenFondo)
   cvInitFont(&Titulo,CV_FONT_HERSHEY_SIMPLEX,1.5,1.5, 0, 6,8);
   cvInitFont(&Encabezado,CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.5, 0, 1,8);
 
-  cvPutText (imagenFondo,"Bienvenido al Foro",cvPoint(ANCHO/2-125, 200), &Font, cvScalar (255,255,255,0));
+  cvPutText (imagenFondo,"Bienvenido al Foro",cvPoint(ANCHO/2-120, 200), &Font, cvScalar (255,255,255,0));
   cvPutText (imagenFondo,"INFONIANOS",cvPoint(20,50),&Titulo,cvScalar(255,255,0,0));
   cvPutText (imagenFondo,"Just post it!",cvPoint(20,70),&Encabezado,cvScalar(255,255,0,0));
 
@@ -35,4 +35,10 @@ void menuInicio (IplImage* imagenFondo)
 			  cvScalar (255,255,255,0),1,8,0);
 
   cvPutText (imagenFondo,"2)Registrarse",cvPoint(BrectanguloDesdeDonde_X + 10, rectanguloDesdeDonde_Y + 30), &Font, cvScalar (255,255,255,0));
+  
+  cvRectangle (imagenFondo,
+			  cvPoint (rectanguloHastaDonde_X, rectanguloHastaDonde_Y+50),
+			  cvPoint (BrectanguloDesdeDonde_X, rectanguloHastaDonde_Y+ REC_TAM_Y+50),
+			  cvScalar (255,255,255,0),1,8,0);
+  cvPutText (imagenFondo,"0)Salir",cvPoint(rectanguloHastaDonde_X + 60, rectanguloHastaDonde_Y +80), &Font, cvScalar (0,0,255,0));
 }

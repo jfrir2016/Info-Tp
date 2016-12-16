@@ -47,6 +47,10 @@ int Registro (usu*,IplImage*, char*);
 
 int Ingresar (usu*,IplImage*, char*);
 
-int interfaz1 (IplImage*);
+int interfaz1 (IplImage*, char*);
 
-void menuInicio(IplImage*);
+void menuInicio (IplImage*);
+
+void leerCampodeTexto (char*, IplImage*,usu*);
+
+void crearCampodeTexto (IplImage*);

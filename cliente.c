@@ -42,23 +42,24 @@ int main(void)
   
   do
   {
-    //Creamos una ventana de tamaño HEIGHTxWIDTH
+    //Creamos una ventana de tamaño ALTOxANCHO
     cvNamedWindow("Ventana",  CV_WINDOW_NORMAL);
-		cvResizeWindow("Ventana", HEIGHT, WIDTH);
+    cvResizeWindow("Ventana", ANCHO, ALTO);
 
-		//Creamos una imagen de fondo que podamos modificar del mismo tamaño que la pantalla
-		IplImage* imagenFondo = cvCreateImage(cvSize(HEIGHT,WIDTH), 8, 3);
-	
-    a=interfaz1(imagenFondo); //ARREGLAR (interfaz1 retorna cualquier cosa) y falto lo de salir
-    printf("%d",a);
-		fflush(stdout);
+    //Creamos una imagen de fondo que podamos modificar del mismo tamaño que la pantalla
+    IplImage* imagenFondo = cvCreateImage(cvSize(ANCHO,ALTO), 8, 3);
+
+    //Se genera la interfaz y se asigna la seleccion a la variable a
+    a=interfaz1(imagenFondo,"Ventana"); 
+    
     if(a!=0)
-		{
-			a--;
-			Menu1[a](&buff,imagenFondo,"Ventana");				//Llamo a funcion Ingresar o Registrarse
-		}
-		else
-			buff.id=0;
+    {
+      a--;
+      Menu1[a](&buff,imagenFondo,"Ventana");				//Llamo a funcion Ingresar o Registrarse
+    }
+    
+    else
+      buff.id=0;
 		
     if((send(sockfd,&buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {

@@ -3,9 +3,11 @@
 int interfaz1 (IplImage* imagenFondo,char* nombreVentana)
 {
   char a;
-	int b;
-	
-	cvZero(imagenFondo);
+  int b;
+  
+  //Limpiamos la imagen
+  cvZero(imagenFondo);
+  
   //Creamos el menu
   menuInicio(imagenFondo);
   
@@ -13,9 +15,7 @@ int interfaz1 (IplImage* imagenFondo,char* nombreVentana)
   cvShowImage (nombreVentana,imagenFondo);
   
   a = cvWaitKey(0);
-	printf("%c\n",a);
-	fflush(stdout);
-	a=a-'0';
-	b=a;
+  a=a-'0';
+  b=a;
   return b;
 }
