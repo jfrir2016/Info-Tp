@@ -145,7 +145,7 @@ void* nuevo_thread (void *rs)
     // case 3: BorrarPost
   }while(sel<3);
   if(sel==3)
-    BajaUsu (new_fd,&(rt_p->Uroot),id);		// case 4: BajaUsu
+    BajaUsu (new_fd,rt_p->Uroot,id);		// case 4: BajaUsu
   printf("Murio uno\n");
   //exit(0);	   				// case 5: Exit 
   pthread_exit(0);

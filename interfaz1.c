@@ -1,25 +1,21 @@
 #include "Cliente.h"
 
-int interfaz1 (void){
-  int a;
-  //Creamos una ventana de tamaño HEIGHTxWIDTH
-  cvNamedWindow("Boton",  CV_WINDOW_NORMAL);
-  cvResizeWindow("Boton", HEIGHT, WIDTH);
-
-  //Creamos una imagen de fondo que podamos modificar del mismo tamaño que la pantalla
-  IplImage* imagenFondo = cvCreateImage(cvSize(HEIGHT,WIDTH), 8, 3);
-  cvZero(imagenFondo);
-  
+int interfaz1 (IplImage* imagenFondo,char* nombreVentana)
+{
+  char a;
+	int b;
+	
+	cvZero(imagenFondo);
   //Creamos el menu
   menuInicio(imagenFondo);
   
   //Mostramos la imagen
-  cvShowImage ("Boton",imagenFondo);
+  cvShowImage (nombreVentana,imagenFondo);
   
-  a= cvWaitKey(0) -'0'-1;
-  
-  cvReleaseImage(&imagenFondo);
-  cvDestroyWindow("Boton");
-  
-  return a;
+  a = cvWaitKey(0);
+	printf("%c\n",a);
+	fflush(stdout);
+	a=a-'0';
+	b=a;
+  return b;
 }

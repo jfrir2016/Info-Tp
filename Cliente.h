@@ -14,13 +14,14 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
-#define HEIGHT 1000
-#define WIDTH 700
+#define ANCHO 1000
+#define ALTO 700
 #define REC_TAM_Y 25*2
 #define REC_TAM_X 100*2
+
 #define BUFFER 100
 #define PORT 43210
-#define IP "10.12.110.57"
+#define IP "10.128.3.107"
 
 typedef struct User
 {
@@ -42,10 +43,10 @@ typedef struct Post
 }post;
 
 
-int Registro (usu*);
+int Registro (usu*,IplImage*, char*);
 
-int Ingresar (usu*);
+int Ingresar (usu*,IplImage*, char*);
 
-int interfaz1 (void);
+int interfaz1 (IplImage*);
 
 void menuInicio(IplImage*);

@@ -11,8 +11,10 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <netdb.h>
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
+//#include <opencv/cv.h>
+//#include <opencv/highgui.h>
+#include <pthread.h>
+
 
 #define FUSU "Usuarios"
 #define FPUB "Posts"
@@ -66,6 +68,12 @@ typedef struct CommentNode
   struct CommentNode *nxt;
 }NodeComment;
 
+typedef struct Root
+{
+  NodeUser *Uroot;
+  NodePost *Proot;
+  int sock;
+}ROOT;
 
 int GuardarUsuarios (NodeUser *, char *);
 
@@ -81,7 +89,9 @@ int LoadComments (NodePost **);
 
 void sigchld_handler(int);
 
-int AgregarNodoUsuario(USU*, NodeUser*);
+void sig_finish (int);
+
+int AgregarNodoUsuario(USU*, NodeUser**);
 
 void AgregarNodoComentario(COMMT*, NodePost*, NodeComment*);
 
@@ -105,4 +115,4 @@ int BorrarPost (int, NodePost*,int);
 
 int BajaUsu (int, NodeUser*, int);
 
-//void ListarPost (char**, NodePost*);
+void* nuevo_thread (void *);

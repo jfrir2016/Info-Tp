@@ -4,23 +4,23 @@
 
 int main (void)
 {
-  
   NodeUser *URoot=NULL;
-	NodePost *PRoot=NULL;
-	NodeComment *CRoot=NULL;
+  NodePost *PRoot=NULL;
+  //NodeComment *CRoot=NULL;
 	
-	int sockfd, accion, new_fd, size;
-  char buffer[BUFFER];
+  int sockfd, new_fd, size;
+  int id, sel;
+  int (*Menu[])(int,NodePost*,int)={Posteo,AgregarPost,BorrarPost};
   
+  USU *buff;
 	
-	struct sockaddr_in server_addr;
+  struct sockaddr_in server_addr;
   struct sockaddr_in client_addr;
-  
   
   // Creo el socket y guardo su descriptor; exit si hubo error
   if((sockfd= socket(AF_INET, SOCK_STREAM, 0))==-1)
   {
-      perror("Socket: ");
+      perror("Socket");
       exit(1);
   }
   
@@ -32,9 +32,9 @@ int main (void)
   
 	
 	
-  if((bind(sockfd,(struct sock_addr *)&server_addr, sizeof(struct sock_addr)))==-1)
+  if((bind(sockfd,(struct sockaddr *)&server_addr, sizeof(struct sockaddr)))==-1)
   {
-    perror("Bind: ");
+    perror("Bind");
     exit(1);
   }
   
@@ -47,7 +47,7 @@ int main (void)
     
   if(listen(sockfd,MEMSET)==-1)
   {
-    perror("Listen: ");
+    perror("Listen");
     exit(1);
   }
   
@@ -62,64 +62,63 @@ int main (void)
   
     size = sizeof(struct sockaddr_in);
       
-    if((new_fd=accept(sockfd,&client_addr,&size))==-1)
+    if((new_fd=accept(sockfd,(struct sockaddr *)&client_addr,(socklen_t*)&size))==-1)
     {
-			perror("Accept");
-			exit(1);
+	perror("Accept");
+	exit(1);
     }
     
     printf("Se recibio conexion de: %s", inet_ntoa(client_addr.sin_addr));
+    fflush(stdout);
     
     if(!fork())
-      {
-				//proceso hijo
-				close(sockfd);
-				
-				if((recv(sockfd,buff,strlen(buff),0,)))==-1)
-					{
-					perror("Sendto: ");
-					exit(1);
-					}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				strcpy(buffer,"Ingrese 0 para iniciar sesion y 1 para registrarse\n");
-				if((sendto(new_fd,buffer,strlen(buffer),0,(struct sockaddr *) &client_addr,sizeof(struct sockaddr)))==-1)
-				{
-					perror("Sendto: ");
-					exit(1);
-				}
-				accion=2;
-				if((write(new_fd,&accion,sizeof(accion)))==-1)
-				{
-					perror("Write: ")
-					exit(1);
-				}
+    {
+	//Proceso hijo
+	close(sockfd);
+	buff=(USU*)malloc(sizeof(USU));
+	do
+	{
+	  if((recv(new_fd,buff,sizeof(USU),0))==-1)	//recive seleccio de Menu de Inicio
+	  {
+	    perror("Recv");
+	    exit(1);
+	  }
+	  if(buff->id==1)
+	    id=Check(&buff,URoot);			//Logueo
+	  else
+	    id=AgregarNodoUsuario(buff,URoot);		//Registro
 	
-				if((read(new_fd,&accion,sizeof(accion)))==-1)
-				{
-					perror("Read: ")
-					exit(1);
-				}
+	  //BuscarNombreDeId
 	
-				switch(accion)
-				{
-					case 0://iniciar sesion
-					break;
-					case 1://registrarse
-					break;
-				}
-      }
-      
-		//proceso padre
-    close(new_fd)
-    
-    }
-    return 0;
+	  if((send(new_fd,&id,sizeof(int),0))==-1)	//Envia respuesta
+	  {
+	    perror("Send");
+	    exit(1);
+	  }
+	}while(id<0); //Bucle
+	
+	do
+	{
+	  if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
+	  {
+	    perror("Recv");
+	    exit(1);
+	  }
+	
+	  sel--;
+	  if(sel<3)
+	    Menu[sel](new_fd,PRoot,id);
+	    // case 1: Posteo (Falta considerar comentar y demas)
+	    // case 2: AgregarPost
+	    // case 3: BorrarPost
+	}while(sel<3);
+	  if(sel==3)
+	    BajaUsu (new_fd,URoot,id);
+	    // case 4: BajaUsu
+    }	    // case 5: Exit
+    //proceso padre
+    close(new_fd);
+  }
+  //salir
+  return 0;
 }

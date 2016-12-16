@@ -2,8 +2,8 @@
 
 void menuInicio (IplImage* imagenFondo)
 {
-  int rectanguloDesdeDonde_X = HEIGHT*0.2;
-  int rectanguloDesdeDonde_Y = WIDTH*0.5;
+  int rectanguloDesdeDonde_X = ANCHO*0.2;
+  int rectanguloDesdeDonde_Y = ALTO*0.5;
   int rectanguloHastaDonde_X = rectanguloDesdeDonde_X + REC_TAM_X;
   int rectanguloHastaDonde_Y = rectanguloDesdeDonde_Y + REC_TAM_Y;
   int BrectanguloDesdeDonde_X = rectanguloDesdeDonde_X + 400;
@@ -18,7 +18,7 @@ void menuInicio (IplImage* imagenFondo)
   cvInitFont(&Titulo,CV_FONT_HERSHEY_SIMPLEX,1.5,1.5, 0, 6,8);
   cvInitFont(&Encabezado,CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.5, 0, 1,8);
 
-  cvPutText (imagenFondo,"Bienvenido al Foro",cvPoint(HEIGHT/2-125, 200), &Font, cvScalar (255,255,255,0));
+  cvPutText (imagenFondo,"Bienvenido al Foro",cvPoint(ANCHO/2-125, 200), &Font, cvScalar (255,255,255,0));
   cvPutText (imagenFondo,"INFONIANOS",cvPoint(20,50),&Titulo,cvScalar(255,255,0,0));
   cvPutText (imagenFondo,"Just post it!",cvPoint(20,70),&Encabezado,cvScalar(255,255,0,0));
 

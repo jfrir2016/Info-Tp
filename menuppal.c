@@ -6,17 +6,17 @@
 #include <string.h>
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
-#define HEIGHT 1000
-#define WIDTH 700
+#define ANCHO 1000
+#define ALTO 700
 
 void menuPrincipal(IplImage*, int);
 
 int main(void){
 
   cvNamedWindow("menuPrincipal", CV_WINDOW_NORMAL);
-  cvResizeWindow("menuPrincipal", HEIGHT, WIDTH);
+  cvResizeWindow("menuPrincipal", ANCHO, ALTO);
   
-  IplImage* imagenFondo = cvCreateImage(cvSize(HEIGHT,WIDTH), 8, 3);
+  IplImage* imagenFondo = cvCreateImage(cvSize(ANCHO,ALTO), 8, 3);
   cvZero(imagenFondo);
   
   menuPrincipal(imagenFondo,1);
@@ -34,7 +34,7 @@ int main(void){
 
 void menuPrincipal(IplImage* imagenFondo, int id){
   
-  int rectanguloDesdeDonde_X = HEIGHT/2-100;
+  int rectanguloDesdeDonde_X = ANCHO/2-100;
   int rectanguloDesdeDonde_Y = 90;
   int rectanguloHastaDonde_X = rectanguloDesdeDonde_X + 200;
   int rectanguloHastaDonde_Y = rectanguloDesdeDonde_Y + 50;
@@ -64,7 +64,7 @@ void menuPrincipal(IplImage* imagenFondo, int id){
   
   cvPutText (imagenFondo,"INFONIANOS",cvPoint(20,50),&infonianos,cvScalar(255,255,0,0));
   cvPutText (imagenFondo,"Just post it!",cvPoint(20,70),&encabezado,cvScalar(255,255,0,0));
-  cvPutText (imagenFondo,"Menu principal",cvPoint(HEIGHT/2-20, 80),&textos,cvScalar(255,255,255,0));
+  cvPutText (imagenFondo,"Menu principal",cvPoint(ANCHO/2-20, 80),&textos,cvScalar(255,255,255,0));
   
   for (i=0;i<5;i++){
     cvRectangle (imagenFondo,

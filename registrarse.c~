@@ -1,40 +1,39 @@
 #include "Cliente.h"
 
-usu* Registro (void)
+int Registro (usu *Datos, IplImage* imagenFondo)
 {
-	USU Datos;
   char Aux[8];
-  int a,id;
+  int a;
   
   do
   {
     //system("clear");
   
     printf("Ingrese Nombre: ");
-    scanf("%s",Datos.Nombre);
+    scanf("%s",Datos->Nombre);
   
     printf("Ingrese edad: ");
-    scanf("%d",&(Datos.Edad));
+    scanf("%d",&(Datos->Edad));
   
     printf("Ingrese e-mail: ");
-    scanf("%s",Datos.email);
+    scanf("%s",Datos->email);
   
     printf("Ingrese Usuario: ");
-    scanf("%s",Datos.Usuario);
+    scanf("%s",Datos->Usuario);
   
     printf("Ingrese Contraseña: ");
-    scanf("%s",Datos.Contra);
+    scanf("%s",Datos->Contra);
   
     printf("Repita Contraseña: ");
     scanf("%s",Aux);
-    a=strcmp(Datos.Contra,Aux);
+    a=strcmp(Datos->Contra,Aux);
     if(a)
       printf("ERROR: Contraseñas diferentes\n");
     //sleep(3);
+    Datos->id=2;
+		
   }while(a);
   
-  id=AgregarNodoUsuario(&Datos,Ini);
-
-  return id;
+  return 0;
 }
   

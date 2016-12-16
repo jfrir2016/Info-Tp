@@ -11,7 +11,7 @@ int main(void)
   
   usu buff;
   post bufp;
-  int (*Menu1[])(usu*)={Ingresar,Registro};
+  int (*Menu1[])(usu*,IplImage*)={Ingresar,Registro};
 	
   struct sockaddr_in server_addr;
   struct sockaddr_in my_addr;
@@ -38,18 +38,27 @@ int main(void)
     exit(1);
   }
   
+  printf("Conectado\n");
+  
   do
-  {/*
-    printf("\t\tMenu de Inicio\n1)Ingresar\n2)Registrarse\n");
-    scanf("%d",&a);
-    a--;
-    */
-    a=interfaz1(); //ARREGLAR (interfaz1 retorna cualquier cosa) y falto lo de salir
-    
+  {
+    //Creamos una ventana de tamaño HEIGHTxWIDTH
+    cvNamedWindow("Ventana",  CV_WINDOW_NORMAL);
+		cvResizeWindow("Ventana", HEIGHT, WIDTH);
+
+		//Creamos una imagen de fondo que podamos modificar del mismo tamaño que la pantalla
+		IplImage* imagenFondo = cvCreateImage(cvSize(HEIGHT,WIDTH), 8, 3);
+	
+    a=interfaz1(imagenFondo); //ARREGLAR (interfaz1 retorna cualquier cosa) y falto lo de salir
+    printf("%d",a);
+		fflush(stdout);
     if(a!=0)
-			Menu1[a](&buff);				//Llamo a funcion Ingresar o Registrarse
+		{
+			a--;
+			Menu1[a](&buff,imagenFondo,"Ventana");				//Llamo a funcion Ingresar o Registrarse
+		}
 		else
-			buff->id=0;
+			buff.id=0;
 		
     if((send(sockfd,&buff,sizeof(buff),0))==-1) //Envio datos de Usuario
     {

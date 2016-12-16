@@ -1,6 +1,6 @@
 #include "Cliente.h"
 
-int Registro (usu *Datos)
+int Registro (usu *Datos, IplImage* imagenFondo, char* nombreVentana)
 {
   char Aux[8];
   int a;
