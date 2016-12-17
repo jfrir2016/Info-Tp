@@ -54,3 +54,5 @@ void menuInicio (IplImage*);
 void leerCampodeTexto (char*, IplImage*,usu*);
 
 void crearCampodeTexto (IplImage*);
+
+int menuPrincipal(IplImage*,char*, int);
