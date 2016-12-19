@@ -21,7 +21,7 @@
 
 #define BUFFER 100
 #define PORT 43210
-#define IP "10.128.3.107"
+#define IP "10.0.2.15"
 
 typedef struct User
 {
@@ -43,9 +43,9 @@ typedef struct Post
 }post;
 
 
-int Registro (usu*,IplImage*, char*);
+int Registro (usu*,IplImage*, char*, int);
 
-int Ingresar (usu*,IplImage*, char*);
+int Ingresar (usu*,IplImage*, char*,int);
 
 int interfaz1 (IplImage*, char*);
 
@@ -56,3 +56,19 @@ void leerCampodeTexto (char*, IplImage*,usu*);
 void crearCampodeTexto (IplImage*);
 
 int menuPrincipal(IplImage*,char*, int);
+
+void errorInicio(IplImage*);
+
+int cvListarPost(IplImage*, char*,int);
+
+void cvMostrarTitulo (IplImage*);
+
+void cvResultadoBorrarPub(IplImage*, int);
+
+int cvBajaUsuario(IplImage*, char*, int);
+
+void cvLeerCamposPost(IplImage*,char*,post*);
+
+void cvCrearCamposPost(IplImage*);
+
+void cvCrearPublicacion (IplImage* , char* , post *);

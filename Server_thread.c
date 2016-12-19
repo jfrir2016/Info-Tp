@@ -117,35 +117,47 @@ void* nuevo_thread (void *rs)
       perror("Recv");
       exit(1);
     }
+    
     if(buff->id==1)
       id=Check(&buff,rt_p->Uroot);			//Logueo
-    else
+    else if(buff->id==2)
       id=AgregarNodoUsuario(buff,&(rt_p->Uroot));	//Registro
-
+    else
+      id=0;
+    printf("Sale del los if");
+    fflush(stdout);
     if((send(new_fd,&id,sizeof(int),0))==-1)		//Envia respuesta
     {
       perror("Send");
       exit(1);
     }
+    printf("Sale del send");
+    fflush(stdout);
   }while(id<0); //Bucle
-	
-  do
+  
+  if(id!=0)
   {
-  if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
-  {
-    perror("Recv");
-    exit(1);
-  }
+    do
+    {
+      printf("Ingrese al do while de seleccion");
+      fflush(stdout);
+    if((recv(new_fd,&sel,sizeof(int),0))==-1)	//Recivo seleccion
+    {
+      perror("Recv");
+      exit(1);
+    }
 
-  sel--;
-  if(sel<3)
-    Menu[sel](new_fd,rt_p->Proot,id);
-    // case 1: Posteo (Falta considerar comentar y demas)
-    // case 2: AgregarPost
-    // case 3: BorrarPost
-  }while(sel<3);
-  if(sel==3)
-    BajaUsu (new_fd,rt_p->Uroot,id);		// case 4: BajaUsu
+    sel--;
+    if(sel<3)
+      Menu[sel](new_fd,rt_p->Proot,id);
+      // case 1: Posteo (Falta considerar comentar y demas)
+      // case 2: AgregarPost
+      // case 3: BorrarPost
+    }while(sel<3);
+    
+    if(sel==3)
+      BajaUsu (new_fd,rt_p->Uroot,id);		// case 4: BajaUsu
+  }
   printf("Murio uno\n");
   //exit(0);	   				// case 5: Exit 
   pthread_exit(0);

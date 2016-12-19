@@ -9,15 +9,11 @@ void crearCampodeTexto(IplImage* imagenFondo)
   int rectanguloHastaDonde_Y = rectanguloDesdeDonde_Y + REC_TAM_Y;
 
   CvFont Font;
-  CvFont infonianos;
-  CvFont encabezado;
+  
+  cvMostrarTitulo(imagenFondo);
   
   cvInitFont(&Font,CV_FONT_HERSHEY_SIMPLEX, 0.7, 0.8, 0, 2,8);
-  cvInitFont(&infonianos,CV_FONT_HERSHEY_SIMPLEX,1.5,1.5, 0, 6,8);
-  cvInitFont(&encabezado,CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.5, 0, 1,8);
   
-  cvPutText (imagenFondo,"INFONIANOS",cvPoint(20,50),&infonianos,cvScalar(255,255,0,0));
-  cvPutText (imagenFondo,"Just post it!",cvPoint(20,70),&encabezado,cvScalar(255,255,0,0));
   cvPutText (imagenFondo,"Ingresar",cvPoint(ANCHO/2-50, 100), &Font, cvScalar (255,255,255,0));	
 
   // Creamos un rectangulo y se lo asignamos a la imagen de fondo

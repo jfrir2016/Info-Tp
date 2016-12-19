@@ -9,7 +9,7 @@ void leerCampodeTexto(char* nombreVentana, IplImage* imagenFondo,usu *dir)
   int textoDesdeDonde_X = ANCHO *0.6+10;
   int textoDesdeDonde_Y = ALTO *0.25+30;
   
-  //Circulo que indica donde estamos parados
+  //Circulo que indica que estamos en usuario
   cvCircle( imagenFondo, cvPoint(ANCHO *0.6+ REC_TAM_X+70 , textoDesdeDonde_Y), 10, cvScalar (0,0,255,0), -1, 8, 0 );
   cvShowImage(nombreVentana,imagenFondo);
   
@@ -18,7 +18,7 @@ void leerCampodeTexto(char* nombreVentana, IplImage* imagenFondo,usu *dir)
   CvFont Font;
   cvInitFont(&Font,CV_FONT_HERSHEY_SIMPLEX, 0.7, 0.8, 0, 2,8);
   
-
+  //Leemos Usuario
   while (aux != '\n') //si no es un enter se llena el campo
   {
     //Aca vamos a entrar si escribio una letra
@@ -49,12 +49,13 @@ void leerCampodeTexto(char* nombreVentana, IplImage* imagenFondo,usu *dir)
    
    for (i=0; i<8; i++) { dir->Contra[i]='\0'; } //inicializo en null
    
+   //Circulo que indica que estamos en password
    cvCircle(imagenFondo, cvPoint (ANCHO *0.6+ REC_TAM_X+70,textoDesdeDonde_Y+2*REC_TAM_Y), 10, cvScalar (0,0,255,0), -1, 8, 0 );
    cvShowImage(nombreVentana,imagenFondo);
 
    aux=cvWaitKey(0);
    puntero_lector=0;
-   
+   //Leemos password
    while (aux != '\n') //si no es enter entra
    {
      //Aca vamos a entrar si escribio una letra

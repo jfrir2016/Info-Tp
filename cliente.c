@@ -11,7 +11,7 @@ int main(void)
   
   usu buff;
   post bufp;
-  int (*Menu1[])(usu*,IplImage*)={Ingresar,Registro};
+  int (*Menu1[])(usu*,IplImage*,char*,int)={Ingresar,Registro};
 	
   struct sockaddr_in server_addr;
   struct sockaddr_in my_addr;
@@ -40,22 +40,24 @@ int main(void)
   
   printf("Conectado\n");
   
-  do
-  {
-    //Creamos una ventana de tamaño ALTOxANCHO
+  //Creamos una ventana de tamaño ALTOxANCHO
     cvNamedWindow("Ventana",  CV_WINDOW_NORMAL);
     cvResizeWindow("Ventana", ANCHO, ALTO);
 
     //Creamos una imagen de fondo que podamos modificar del mismo tamaño que la pantalla
     IplImage* imagenFondo = cvCreateImage(cvSize(ANCHO,ALTO), 8, 3);
+  
+  do
+  {
+    if(i!=-1)
+      //Se genera la interfaz y se asigna la seleccion a la variable a
+      a=interfaz1(imagenFondo,"Ventana");
+    else a=1;
 
-    //Se genera la interfaz y se asigna la seleccion a la variable a
-    a=interfaz1(imagenFondo,"Ventana"); 
-    
     if(a!=0)
     {
       a--;
-      Menu1[a](&buff,imagenFondo,"Ventana");				//Llamo a funcion Ingresar o Registrarse
+      Menu1[a](&buff,imagenFondo,"Ventana",i);	//Llamo a funcion Ingresar o Registrarse
     }
     
     else
@@ -71,15 +73,15 @@ int main(void)
       perror("Recv");
       exit(1);
     }
-  }while(id<0);
+    i=id;
   
+  }while(id<0);
 	if(id==0)
 		return 0;
   
 	do
 	{
 	  a=menuPrincipal(imagenFondo,"Ventana",id);
-  
 	  if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
 	  {
 	    perror("Send");
@@ -135,52 +137,23 @@ int main(void)
 	      break;
 	
 	    case 3:
+	      cant = cvListarPost(imagenFondo,"Ventana",sockfd);
+	      if(cant==-1)
+		break;
 	      if((recv(sockfd,&cant,sizeof(int),0))==-1)
 	      {
 		perror("Recv");
 		exit(1);
 	      }
-	      if(cant==0)
-	      printf("No hay Publicaciones\n");
-	
-	      for(i=1;i<=cant;i++)
-	      {
-		if((recv(sockfd,buffer,BUFFER,0))==-1)	
-		{
-		  perror("Recv");
-		  exit(1);
-		}
-		printf("%d)%s\n",i,buffer);
-	      }
-	      scanf("%d",&a);
-	      if((send(sockfd,&a,sizeof(int),0))==-1)	//Envio seleccion
-	      {
-		perror("Send");
-		exit(1);
-	      }
-	      if((recv(sockfd,&cant,sizeof(int),0))==-1)
-	      {
-		perror("Recv");
-		exit(1);
-	      }
-	      if(cant==0)
-		printf("No es una publicacion propia\n");
-	      else
-		printf("Publicacion borrada con exito\n");
+	      
+	      cvZero(imagenFondo);
+	      cvResultadoBorrarPub(imagenFondo,cant);
+	      cvShowImage("Ventana",imagenFondo);
+	      cvWaitKey(0);
 	      break;
 	
 	    case 4:
-	      if((recv(sockfd,&cant,sizeof(int),0))==-1)
-	      {
-		perror("Recv");
-		exit(1);
-	      }
-	      if(cant==1)
-	      {
-		printf("Se ha dado de baja\n");
-		break;
-	      }
-	      printf("No se pudo dar de baja\n");
+	      cvBajaUsuario(imagenFondo,"Ventana",sockfd);
 	      break;
 	
 	    case 5:
